@@ -8,6 +8,9 @@ const resolvers = {
     user: async () => {
       return User.find();
     },
+    characterAll: async () => {
+      return Character.find();
+    },
   },
 
   Mutation: {
@@ -41,6 +44,21 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+
+    addCharacter: async (parent, args, context) => {
+      const character = await Character.create(args);
+
+      // await User.findOneAndUpdate(
+      //   { _id: context.user._id },
+      //   { $addToSet: { characters: character._id } }
+      // );
+
+      return character;
+    },
+
+    deleteCharacter: async (parent, { characterId }) => {
+      return Character.findOneAndDelete({ _id: characterId });
     },
   },
 };
