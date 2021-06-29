@@ -9,7 +9,8 @@ const typeDefs = gql`
     backstory: String
     level: Int
     role: String
-    Notes: String
+    notes: String
+    user: String!
   }
 
   type Group {
@@ -52,6 +53,8 @@ const typeDefs = gql`
 
   type Query {
     user: [User]
+    characterAll: [Character]
+    userCharacters(realName: String): [Character]
   }
 
   type Mutation {
@@ -72,6 +75,27 @@ const typeDefs = gql`
       city: String
       state: String
     ): User
+    addCharacter(
+      characterName: String!
+      class: String!
+      race: String
+      backstory: String
+      level: Int
+      role: String
+      notes: String
+      user: String
+    ): Character
+    updateCharacter(
+      characterName: String!
+      class: String!
+      race: String
+      backstory: String
+      level: Int
+      role: String
+      notes: String
+      user: String
+    ): Character
+    deleteCharacter(characterId: ID!): Character
   }
 `;
 
