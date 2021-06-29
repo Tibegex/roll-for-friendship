@@ -27,12 +27,10 @@ const userSchema = new Schema({
   },
   city: {
     type: String,
-    required: true,
     trim: true,
   },
   state: {
     type: String,
-    required: true,
     trim: true,
   },
   groups: [Group.schema],
