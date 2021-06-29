@@ -15,6 +15,6 @@ export const userReducer = (state, action) => {
   }
 };
 
-export function useProductReducer(initialState) {
+export function useUserReducer(initialState) {
   return useReducer(userReducer, initialState);
 }
