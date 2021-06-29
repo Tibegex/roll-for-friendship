@@ -1,5 +1,5 @@
 const User = require("./User");
-const User = require("./Group");
-const User = require("./Character");
+const Group = require("./Group");
+const Character = require("./Character");
 
 module.exports = { User, Group, Character };

@@ -49,8 +49,20 @@ const typeDefs = gql`
     token: ID
     user: User
   }
+
   type Query {
-    user: User
+    user: [User]
+  }
+
+  type Mutation {
+    addUser(
+      realName: String!
+      email: String!
+      password: String!
+      playerLevel: String
+      city: String
+      state: String
+    ): Auth
   }
 `;
 
