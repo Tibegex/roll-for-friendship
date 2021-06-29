@@ -64,6 +64,14 @@ const typeDefs = gql`
       state: String
     ): Auth
     login(email: String!, password: String!): Auth
+    updateUser(
+      realName: String
+      email: String
+      password: String
+      playerLevel: String
+      city: String
+      state: String
+    ): User
   }
 `;
 
