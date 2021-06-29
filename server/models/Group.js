@@ -3,7 +3,7 @@ const Character = require("./Character");
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const groupSchema = new Schema({
   campaignName: {
     type: String,
     required: true,
@@ -58,3 +58,7 @@ const userSchema = new Schema({
   characters: [Character.schema],
   lookingFor: [{ type: String }],
 });
+
+const Group = mongoose.model("Group", groupSchema);
+
+module.exports = Group;
