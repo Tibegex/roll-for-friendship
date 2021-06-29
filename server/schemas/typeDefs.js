@@ -63,6 +63,7 @@ const typeDefs = gql`
       city: String
       state: String
     ): Auth
+    login(email: String!, password: String!): Auth
   }
 `;
 
