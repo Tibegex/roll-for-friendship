@@ -1,0 +1,42 @@
+[
+  {
+    "realName": "FireFox",
+    "email": "Fireismypower@gmail.com",
+    "password": "test1234",
+    "playerLevel": "Expert",
+    "city": "Denver",
+    "state": "CO"
+  },
+  {
+    "realName": "Lightblight",
+    "email": "Lightning@gmail.com",
+    "password": "test1234",
+    "playerLevel": "Argumentative",
+    "city": "New York",
+    "state": "NY"
+  },
+  {
+    "realName": "Honeysuckle",
+    "email": "Forest@gmail.com",
+    "password": "test1234",
+    "playerLevel": "Moderate",
+    "city": "Columbus",
+    "state": "OH"
+  },
+  {
+    "realName": "Tigerdance",
+    "email": "Tigerlove@gmail.com",
+    "password": "test1234",
+    "playerLevel": "Master",
+    "city": "Jacksonville",
+    "state": "FL"
+  },
+  {
+    "realName": "Beachbum",
+    "email": "Demo@gmail.com",
+    "password": "test1234",
+    "playerLevel": "Noob",
+    "city": "L.A.",
+    "state": "CA"
+  }
+]
