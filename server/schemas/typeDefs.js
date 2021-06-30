@@ -55,6 +55,8 @@ const typeDefs = gql`
     user: [User]
     characterAll: [Character]
     userCharacters(realName: String): [Character]
+    groupAll: [Group]
+    userGroups(realName: String): [Group]
   }
 
   type Mutation {
@@ -96,6 +98,43 @@ const typeDefs = gql`
       user: String
     ): Character
     deleteCharacter(characterId: ID!): Character
+    addGroup(
+      campaignName: String!
+      gameVersion: String
+      meetingTime: String
+      meetingTimezone: String
+      weekday: String
+      frequencyTimes: Int
+      gameLocationCity: String
+      gameLocationState: String
+      vTTUsed: String
+      currentCampaignLevel: Int
+      minPlayerLevel: String
+      discordChannel: String
+      notes: String
+      profanityLevel: String
+      Characters: [Character]
+      lookingFor: [String]
+    ): Group
+    updateGroup(
+      campaignName: String!
+      gameVersion: String
+      meetingTime: String
+      meetingTimezone: String
+      weekday: String
+      frequencyTimes: Int
+      gameLocationCity: String
+      gameLocationState: String
+      vTTUsed: String
+      currentCampaignLevel: Int
+      minPlayerLevel: String
+      discordChannel: String
+      notes: String
+      profanityLevel: String
+      Characters: [Character]
+      lookingFor: [String]
+    ): Group
+    deleteGroup(groupId: ID!): Group
   }
 `;
 

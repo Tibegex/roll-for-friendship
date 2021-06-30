@@ -8,8 +8,23 @@ const resolvers = {
     user: async () => {
       return User.find();
     },
+
     characterAll: async () => {
       return Character.find();
+    },
+
+    groupAll: async () => {
+      return Group.find();
+    },
+
+    userCharacters: async (parent, { realName }, context) => {
+      const params = realName ? { realName } : {};
+      return Character.find(params);
+    },
+
+    userGroups: async (parent, { realName }, context) => {
+      const params = realName ? { realName } : {};
+      return Group.find(params);
     },
   },
 
@@ -20,6 +35,7 @@ const resolvers = {
 
       return { token, user };
     },
+
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
@@ -29,6 +45,7 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -49,16 +66,63 @@ const resolvers = {
     addCharacter: async (parent, args, context) => {
       const character = await Character.create(args);
 
-      // await User.findOneAndUpdate(
-      //   { _id: context.user._id },
-      //   { $addToSet: { characters: character._id } }
-      // );
+      await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { characters: character._id } }
+      );
 
       return character;
     },
 
-    deleteCharacter: async (parent, { characterId }) => {
-      return Character.findOneAndDelete({ _id: characterId });
+    updateCharacter: async (parent, args, context) => {
+      const character = await Character.findOneAndUpdate(args._id, args);
+
+      return character;
+    },
+
+    addGroup: async (parent, args, context) => {
+      const group = await Group.create(args);
+
+      await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { groups: group._id } }
+      );
+
+      return group;
+    },
+
+    deleteCharacter: async (parent, { characterId }, context) => {
+      if (context.user) {
+        const character = await Character.findOneAndDelete({
+          _id: characterId,
+          user: context.user.realName,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { characters: character._id } }
+        );
+
+        return character;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    deleteGroup: async (parent, { groupId }, context) => {
+      if (context.user) {
+        const group = await Group.findOneAndDelete({
+          _id: groupId,
+          user: context.user.realName,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { groups: group._id } }
+        );
+
+        return group;
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
