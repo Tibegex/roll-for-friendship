@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 // add CSS
-import "semantic-ui-css/semantic.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
