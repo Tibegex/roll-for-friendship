@@ -52,7 +52,8 @@ const typeDefs = gql`
   }
 
   type Query {
-    user: [User]
+    user(realName: String): User
+    users: [User]
     characterAll: [Character]
     userCharacters(realName: String): [Character]
     groupAll: [Group]

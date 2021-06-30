@@ -5,8 +5,18 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    user: async () => {
-      return User.find();
+    user: async (parent, args, context) => {
+      const userName = args.user.realName || context.user.realName;
+      if (userName) {
+        return User.findOne({ realName: userName })
+          .populate("characters")
+          .populate("groups");
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    users: async () => {
+      return User.find().populate("characters").populate("groups");
     },
 
     characterAll: async () => {
