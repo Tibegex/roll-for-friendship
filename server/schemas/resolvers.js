@@ -6,7 +6,8 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     user: async (parent, args, context) => {
-      const userName = args.user.realName || context.user.realName;
+      console.log(context.user);
+      const userName = args.realName || context.user.realName;
       if (userName) {
         return User.findOne({ realName: userName })
           .populate("characters")
