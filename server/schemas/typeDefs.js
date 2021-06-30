@@ -55,9 +55,7 @@ const typeDefs = gql`
     user(realName: String): User
     users: [User]
     characterAll: [Character]
-    userCharacters(realName: String): [Character]
     groupAll: [Group]
-    userGroups(realName: String): [Group]
   }
 
   input characterInput {
