@@ -86,7 +86,7 @@ const typeDefs = gql`
     discordChannel: String
     notes: String
     profanityLevel: String
-    characters: [Character]
+    characters: [String]
     lookingFor: [String]
   }
 
