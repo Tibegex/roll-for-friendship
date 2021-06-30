@@ -1,4 +1,5 @@
 import React from "react";
+import "./navStyle.css";
 
 const Nav = () => {
   return (
@@ -8,4 +9,4 @@ const Nav = () => {
   );
 };
 
-export default Home;
+export default Nav;
