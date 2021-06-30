@@ -40,7 +40,7 @@ export const GET_USER = gql`
   }
 `;
 
-export const GET_USERS = gql`
+export const GET_ALL_USERS = gql`
   query users {
     users {
       _id
@@ -77,6 +77,43 @@ export const GET_USERS = gql`
         notes
         user
       }
+    }
+  }
+`;
+
+export const GET_ALL_Characters = gql`
+  query characterAll {
+    characters {
+      characterName
+      class
+      race
+      backstory
+      level
+      role
+      notes
+      user
+    }
+  }
+`;
+export const GET_ALL_GROUPS = gql`
+  query groupAll {
+    groups {
+      campaignName
+      gameVersion
+      meetingTime
+      meetingTimezone
+      weekday
+      frequencyTimes
+      frequencyPeriod
+      gameLocationCity
+      gameLocationState
+      vttUsed
+      currentCampaignLevel
+      minPlayerLevel
+      discordChannel
+      notes
+      profanityLevel
+      characters
     }
   }
 `;

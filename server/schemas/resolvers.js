@@ -27,15 +27,15 @@ const resolvers = {
       return Group.find();
     },
 
-    userCharacters: async (parent, { realName }, context) => {
-      const params = realName ? { realName } : {};
-      return Character.find(params);
-    },
+    // userCharacters: async (parent, { realName }, context) => {
+    //   const params = realName ? { realName } : {};
+    //   return Character.find(params);
+    // },
 
-    userGroups: async (parent, { realName }, context) => {
-      const params = realName ? { realName } : {};
-      return Group.find(params);
-    },
+    // userGroups: async (parent, { realName }, context) => {
+    //   const params = realName ? { realName } : {};
+    //   return Group.find(params);
+    // },
   },
 
   Mutation: {
