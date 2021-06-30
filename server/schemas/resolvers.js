@@ -74,10 +74,20 @@ const resolvers = {
       return character;
     },
 
-    updateCharacter: async (parent, args, context) => {
-      const character = await Character.findOneAndUpdate(args._id, args);
+    updateCharacter: async (parent, { input }) => {
+      return await Character.findByIdAndUpdate(
+        { _id: id },
+        { input },
+        { new: true }
+      );
+    },
 
-      return character;
+    updateGroup: async (parent, { input }) => {
+      return await Group.findByIdAndUpdate(
+        { _id: id },
+        { input },
+        { new: true }
+      );
     },
 
     addGroup: async (parent, args, context) => {
