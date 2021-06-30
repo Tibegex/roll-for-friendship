@@ -2,7 +2,7 @@ import { useReducer } from "react";
 
 import { ACTIONS } from "./actions";
 
-export const userReducer = (state, action) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS:
       return {
@@ -15,6 +15,6 @@ export const userReducer = (state, action) => {
   }
 };
 
-export function useProductReducer(initialState) {
-  return useReducer(userReducer, initialState);
+export function useUserReducer(initialState) {
+  return useReducer(reducer, initialState);
 }
