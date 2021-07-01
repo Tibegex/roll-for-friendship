@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
 
-// import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/LoginForm";
 
 // const panes = [
 //   {
@@ -29,9 +29,9 @@ const Home = () => {
           </p>
         </Col>
         <Col>
-          <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+          <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
             <Tab eventKey="login" title="Login">
-              <p>login form</p>
+              <LoginForm />
             </Tab>
             <Tab eventKey="signUp" title="Sign Up">
               <p>Sign up form</p>
