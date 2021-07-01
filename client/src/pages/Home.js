@@ -4,6 +4,7 @@ import Auth from "../utils/auth";
 
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUpForm";
+import CharacterList from "../components/CharacterList";
 
 const Home = () => {
   return (
@@ -31,7 +32,10 @@ const Home = () => {
           </Col>
         </Row>
       ) : (
-        <>You're logged in!</>
+        <>
+          <header className="h2">Your Characters:</header>
+          <CharacterList />
+        </>
       )}
     </Container>
   );
