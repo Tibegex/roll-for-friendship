@@ -19,10 +19,10 @@ const Home = () => {
         </Col>
         <Col>
           <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
-            <Tab eventKey="login" title="Login">
+            <Tab eventKey="login" title="Login" key="Login">
               <LoginForm />
             </Tab>
-            <Tab eventKey="signUp" title="Sign Up">
+            <Tab eventKey="signUp" title="Sign Up" key="Sign Up">
               <SignUpForm />
             </Tab>
           </Tabs>
