@@ -20,12 +20,12 @@ const resolvers = {
       return User.find().populate("characters").populate("groups");
     },
 
-    characters: async () => {
-      return Character.find({});
+    characters: async (parent, args) => {
+      return Character.find(args);
     },
 
-    groups: async () => {
-      return Group.find({});
+    groups: async (parent, args) => {
+      return Group.find(args);
     },
   },
 
