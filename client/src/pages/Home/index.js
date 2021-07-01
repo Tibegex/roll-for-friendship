@@ -12,7 +12,7 @@ import {
   Button,
 } from "react-bootstrap";
 
-import { GET_CHARACTERS } from "../../utils/queries";
+import { GET_CURRENT_USER } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import "./homeStyle.css";
 
@@ -21,9 +21,11 @@ import SignUpForm from "../../components/SignUpForm";
 import CharacterList from "../../components/CharacterList";
 
 const Home = () => {
-  const { data } = useQuery(GET_CHARACTERS);
+  const { data } = useQuery(GET_CURRENT_USER);
 
-  const characterList = data?.characters || [];
+  const user = data?.user || [];
+  const characterList = user.characterList;
+  const groupList = user.groupList;
 
   return (
     <Container>
