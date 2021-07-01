@@ -1,0 +1,14 @@
+.container {
+  min-width: 375px;
+}
+
+.h2 {
+  font-family: "Cinzel Decorative", cursive;
+  text-align: center;
+}
+
+.welcome {
+  font-family: "Cinzel Decorative", cursive;
+  font-family: "Vollkorn", serif;
+  text-align: center;
+}
