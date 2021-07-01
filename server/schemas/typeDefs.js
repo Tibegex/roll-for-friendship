@@ -54,8 +54,33 @@ const typeDefs = gql`
   type Query {
     user(realName: String): User
     users: [User]
-    characterAll: [Character]
-    groupAll: [Group]
+    characters(
+      characterName: String
+      class: String
+      race: String
+      backstory: String
+      level: Int
+      role: String
+      notes: String
+    ): [Character]
+    groups(
+      campaignName: String
+      gameVersion: String
+      meetingTime: String
+      meetingTimezone: String
+      weekday: String
+      frequencyTimes: Int
+      frequencyPeriod: String
+      gameLocationCity: String
+      gameLocationState: String
+      vTTUsed: String
+      currentCampaignLevel: Int
+      minPlayerLevel: String
+      discordChannel: String
+      notes: String
+      profanityLevel: String
+      lookingFor: [String]
+    ): [Group]
   }
 
   input characterInput {

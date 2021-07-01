@@ -81,8 +81,8 @@ export const GET_ALL_USERS = gql`
   }
 `;
 
-export const GET_ALL_Characters = gql`
-  query characterAll {
+export const GET_Characters = gql`
+  query characters {
     characters {
       characterName
       class
@@ -91,12 +91,11 @@ export const GET_ALL_Characters = gql`
       level
       role
       notes
-      user
     }
   }
 `;
-export const GET_ALL_GROUPS = gql`
-  query groupAll {
+export const GET_GROUPS = gql`
+  query groups {
     groups {
       campaignName
       gameVersion
@@ -113,7 +112,6 @@ export const GET_ALL_GROUPS = gql`
       discordChannel
       notes
       profanityLevel
-      characters
     }
   }
 `;
