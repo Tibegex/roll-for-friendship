@@ -40,6 +40,46 @@ export const GET_USER = gql`
   }
 `;
 
+export const GET_ME = gql`
+  query user {
+    user {
+      _id
+      realName
+      email
+      playerLevel
+      city
+      state
+      groups {
+        campaignName
+        gameVersion
+        meetingTime
+        meetingTimezone
+        weekday
+        frequencyTimes
+        frequencyPeriod
+        gameLocationCity
+        gameLocationState
+        vttUsed
+        currentCampaignLevel
+        minPlayerLevel
+        discordChannel
+        notes
+        profanityLevel
+      }
+      characters {
+        characterName
+        class
+        race
+        backstory
+        level
+        role
+        notes
+        user
+      }
+    }
+  }
+`;
+
 export const GET_ALL_USERS = gql`
   query users {
     users {

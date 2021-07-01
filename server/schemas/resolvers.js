@@ -16,6 +16,13 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate("thoughts");
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
     users: async () => {
       return User.find().populate("characters").populate("groups");
     },
