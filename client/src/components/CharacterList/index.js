@@ -1,41 +1,36 @@
-import React, { useState } from "react";
-import { useQuery, useMutation } from "@apollo/client";
+import React from "react";
 import { Accordion, Card, Button } from "react-bootstrap";
 
-import { GET_Characters } from "../../utils/queries";
-
-function CharacterList() {
-  const { data, error } = useQuery(GET_Characters);
-
-  console.log(data, error);
-
-  const characterList = data?.characters || [];
-
+function CharacterList({ character, index }) {
   return (
-    <Accordion>
-      {characterList.map((character) => (
-        <Card key={character._id}>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-              {character.characterName}
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>{character.characterName}</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      ))}
-      <Card key="addChar">
+    <>
+      <Card>
         <Card.Header>
-          <Accordion.Toggle as={Button} variant="link" eventKey="1">
-            Click me!
+          <Accordion.Toggle as={Button} variant="link" eventKey={`"${index}"`}>
+            {character.characterName} {index}
           </Accordion.Toggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="1">
-          <Card.Body>Hello! I'm another body</Card.Body>
+        <Accordion.Collapse eventKey={`"${index}"`}>
+          <Card.Body>
+            <span className="font-weight-bold">Character name: </span>
+            {character.characterName} <br />
+            <span className="font-weight-bold">Class: </span>
+            {character.class}
+            <br />
+            <span className="font-weight-bold">Race: </span>
+            {character.race}
+            <br />
+            <span className="font-weight-bold">Backstory: </span>
+            <br />
+            {character.backstory}
+            <br />
+            <span className="font-weight-bold">Notes: </span>
+            <br />
+            {character.characterName}
+          </Card.Body>
         </Accordion.Collapse>
       </Card>
-    </Accordion>
+    </>
   );
 }
 

@@ -1,5 +1,17 @@
 import React from "react";
-import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
+import { useQuery } from "@apollo/client";
+import {
+  Container,
+  Row,
+  Col,
+  Tabs,
+  Tab,
+  Accordion,
+  Card,
+  Button,
+} from "react-bootstrap";
+
+import { GET_CHARACTERS } from "../utils/queries";
 import Auth from "../utils/auth";
 
 import LoginForm from "../components/LoginForm";
@@ -7,6 +19,10 @@ import SignUpForm from "../components/SignUpForm";
 import CharacterList from "../components/CharacterList";
 
 const Home = () => {
+  const { data } = useQuery(GET_CHARACTERS);
+
+  const characterList = data?.characters || [];
+
   return (
     <Container>
       {!Auth.loggedIn() ? (
@@ -34,7 +50,25 @@ const Home = () => {
       ) : (
         <>
           <header className="h2">Your Characters:</header>
-          <CharacterList />
+          <Accordion>
+            {characterList.map((character, index) => (
+              <CharacterList character={character} index={index} key={index} />
+            ))}
+            <Card key="addChar">
+              <Card.Header>
+                <Accordion.Toggle
+                  as={Button}
+                  variant="link"
+                  eventKey={characterList.length + 1}
+                >
+                  Click me!
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey={characterList.length + 1}>
+                <Card.Body>Hello! I'm another body</Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
         </>
       )}
     </Container>
