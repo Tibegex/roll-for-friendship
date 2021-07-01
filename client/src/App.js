@@ -38,9 +38,11 @@ function App() {
         <div>
           <StoreProvider>
             <Nav />
-            <Switch>
-              <Route exact path="/" component={Home} />
-            </Switch>
+            <div className="container-xl">
+              <Switch>
+                <Route exact path="/" component={Home} />
+              </Switch>
+            </div>
           </StoreProvider>
         </div>
       </Router>

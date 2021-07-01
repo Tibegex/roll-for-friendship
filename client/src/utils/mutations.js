@@ -40,6 +40,7 @@ export const LOGIN_USER = gql`
           user
         }
       }
+    }
   }
 `;
 
@@ -48,13 +49,12 @@ export const ADD_USER = gql`
     $realName: String!
     $email: String!
     $password: String!
-    playerLevel: String
-    city: String
-    state: String
+    $playerLevel: String
+    $city: String
+    $state: String
   ) {
     addUser(
-      firstName: $firstName
-      lastName: $lastName
+      realName: $realName
       email: $email
       password: $password
       playerLevel: $playerLevel
