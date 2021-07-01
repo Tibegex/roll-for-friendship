@@ -12,7 +12,7 @@ import {
   Button,
 } from "react-bootstrap";
 
-import { GET_CHARACTERS } from "../../utils/queries";
+import { GET_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import "./homeStyle.css";
 
@@ -21,9 +21,17 @@ import SignUpForm from "../../components/SignUpForm";
 import CharacterList from "../../components/CharacterList";
 
 const Home = () => {
-  const { data } = useQuery(GET_CHARACTERS);
+  const { data } = useQuery(GET_ME);
 
-  const characterList = data?.characters || [];
+  let user = [];
+  let characterList = [];
+  let groupList = [];
+
+  if (data) {
+    user = data.user;
+    characterList = user.characterList;
+    groupList = user.groupList;
+  }
 
   return (
     <Container>
@@ -71,11 +79,30 @@ const Home = () => {
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={characterList.length + 1}>
-                <Card.Body>Hello! I'm another body</Card.Body>
+                <Card.Body>Add Character Form</Card.Body>
               </Accordion.Collapse>
             </Card>
           </Accordion>
           <header className="h2">Your Groups:</header>
+          <Accordion>
+            {groupList.map((group, index) => (
+              <groupList character={group} index={index} key={index} />
+            ))}
+            <Card key="addChar">
+              <Card.Header>
+                <Accordion.Toggle
+                  as={Button}
+                  variant="link"
+                  eventKey={groupList.length + 1}
+                >
+                  Click me!
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey={groupList.length + 1}>
+                <Card.Body>Add Group Form Here</Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
         </>
       )}
     </Container>
