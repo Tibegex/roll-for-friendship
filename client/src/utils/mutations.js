@@ -11,34 +11,6 @@ export const LOGIN_USER = gql`
         playerLevel
         city
         state
-        groups {
-          campaignName
-          gameVersion
-          meetingTime
-          meetingTimezone
-          weekday
-          frequencyTimes
-          frequencyPeriod
-          gameLocationCity
-          gameLocationState
-          vttUsed
-          currentCampaignLevel
-          minPlayerLevel
-          discordChannel
-          notes
-          profanityLevel
-          characters
-        }
-        characters {
-          characterName
-          class
-          race
-          backstory
-          level
-          role
-          notes
-          user
-        }
       }
     }
   }
