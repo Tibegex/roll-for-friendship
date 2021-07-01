@@ -1,5 +1,5 @@
 import React from "react";
-<<<<<<< HEAD:client/src/pages/Home.js
+
 import { useQuery } from "@apollo/client";
 import {
   Container,
@@ -19,14 +19,6 @@ import "./homeStyle.css";
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUpForm";
 import CharacterList from "../components/CharacterList";
-=======
-import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
-import Auth from "../../utils/auth";
-import "./homeStyle.css";
-
-import LoginForm from "../../components/LoginForm";
-import SignUpForm from "../../components/SignUpForm";
->>>>>>> main:client/src/pages/Home/index.js
 
 const Home = () => {
   const { data } = useQuery(GET_CHARACTERS);
