@@ -3,5 +3,9 @@ nav {
 }
 
 #navbar {
-  background-color: rgb(59, 29, 128);
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(81, 23, 104),
+    rgba(12, 66, 97)
+  );
 }
