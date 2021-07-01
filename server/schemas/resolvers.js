@@ -20,23 +20,13 @@ const resolvers = {
       return User.find().populate("characters").populate("groups");
     },
 
-    characterAll: async () => {
-      return Character.find();
+    characters: async (parent, args) => {
+      return Character.find(args);
     },
 
-    groupAll: async () => {
-      return Group.find();
+    groups: async (parent, args) => {
+      return Group.find(args);
     },
-
-    // userCharacters: async (parent, { realName }, context) => {
-    //   const params = realName ? { realName } : {};
-    //   return Character.find(params);
-    // },
-
-    // userGroups: async (parent, { realName }, context) => {
-    //   const params = realName ? { realName } : {};
-    //   return Group.find(params);
-    // },
   },
 
   Mutation: {
