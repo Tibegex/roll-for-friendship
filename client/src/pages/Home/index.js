@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
-import Auth from "../utils/auth";
+import Auth from "../../utils/auth";
 import "./homeStyle.css";
 
-import LoginForm from "../components/LoginForm";
-import SignUpForm from "../components/SignUpForm";
+import LoginForm from "../../components/LoginForm";
+import SignUpForm from "../../components/SignUpForm";
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
           <Col>
             <div className="container">
               <header className="h2">Welcome to Roll for Friendship!</header>
-              <p>
+              <p className="welcome">
                 This site is meant to group players with game masters. If you
                 are a player, search for a group in your area! If you are a game
                 master, put a group together and be able to provide times for
