@@ -12,13 +12,13 @@ import {
   Button,
 } from "react-bootstrap";
 
-import { GET_CHARACTERS } from "../utils/queries";
-import Auth from "../utils/auth";
+import { GET_CHARACTERS } from "../../utils/queries";
+import Auth from "../../utils/auth";
 import "./homeStyle.css";
 
-import LoginForm from "../components/LoginForm";
-import SignUpForm from "../components/SignUpForm";
-import CharacterList from "../components/CharacterList";
+import LoginForm from "../../components/LoginForm";
+import SignUpForm from "../../components/SignUpForm";
+import CharacterList from "../../components/CharacterList";
 
 const Home = () => {
   const { data } = useQuery(GET_CHARACTERS);
