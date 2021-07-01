@@ -74,6 +74,7 @@ const Home = () => {
               </Accordion.Collapse>
             </Card>
           </Accordion>
+          <header className="h2">Your Groups:</header>
         </>
       )}
     </Container>

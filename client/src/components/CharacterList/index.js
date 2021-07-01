@@ -7,7 +7,7 @@ function CharacterList({ character, index }) {
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey={`"${index}"`}>
-            {character.characterName} {index}
+            {character.characterName}
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey={`"${index}"`}>
