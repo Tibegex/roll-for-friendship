@@ -94,10 +94,10 @@ const resolvers = {
     addGroup: async (parent, { input }, context) => {
       const group = await Group.create(input);
 
-      // await User.findOneAndUpdate(
-      //   { _id: context.user._id },
-      //   { $addToSet: { groups: group._id } }
-      // );
+      await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { groups: group._id } }
+      );
 
       return group;
     },
