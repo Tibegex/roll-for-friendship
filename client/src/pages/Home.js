@@ -2,18 +2,7 @@ import React from "react";
 import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
 
 import LoginForm from "../components/LoginForm";
-
-// const panes = [
-//   {
-//     menuItem: "Login",
-//     render: () => (
-//       <Tab.Pane>
-//         <LoginForm />
-//       </Tab.Pane>
-//     ),
-//   },
-//   { menuItem: "Sign Up", render: () => <Tab.Pane>Sign Up Form</Tab.Pane> },
-// ];
+import SignUpForm from "../components/SignUpForm";
 
 const Home = () => {
   return (
@@ -34,7 +23,7 @@ const Home = () => {
               <LoginForm />
             </Tab>
             <Tab eventKey="signUp" title="Sign Up">
-              <p>Sign up form</p>
+              <SignUpForm />
             </Tab>
           </Tabs>
         </Col>

@@ -54,8 +54,7 @@ export const ADD_USER = gql`
     $state: String
   ) {
     addUser(
-      firstName: $firstName
-      lastName: $lastName
+      realName: $realName
       email: $email
       password: $password
       playerLevel: $playerLevel
