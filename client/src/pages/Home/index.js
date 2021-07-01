@@ -1,12 +1,38 @@
 import React from "react";
+<<<<<<< HEAD:client/src/pages/Home.js
+import { useQuery } from "@apollo/client";
+import {
+  Container,
+  Row,
+  Col,
+  Tabs,
+  Tab,
+  Accordion,
+  Card,
+  Button,
+} from "react-bootstrap";
+
+import { GET_CHARACTERS } from "../utils/queries";
+import Auth from "../utils/auth";
+import "./homeStyle.css";
+
+import LoginForm from "../components/LoginForm";
+import SignUpForm from "../components/SignUpForm";
+import CharacterList from "../components/CharacterList";
+=======
 import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
 import Auth from "../../utils/auth";
 import "./homeStyle.css";
 
 import LoginForm from "../../components/LoginForm";
 import SignUpForm from "../../components/SignUpForm";
+>>>>>>> main:client/src/pages/Home/index.js
 
 const Home = () => {
+  const { data } = useQuery(GET_CHARACTERS);
+
+  const characterList = data?.characters || [];
+
   return (
     <Container>
       {!Auth.loggedIn() ? (
@@ -36,7 +62,29 @@ const Home = () => {
           </Col>
         </Row>
       ) : (
-        <>You're logged in!</>
+        <>
+          <header className="h2">Your Characters:</header>
+          <Accordion>
+            {characterList.map((character, index) => (
+              <CharacterList character={character} index={index} key={index} />
+            ))}
+            <Card key="addChar">
+              <Card.Header>
+                <Accordion.Toggle
+                  as={Button}
+                  variant="link"
+                  eventKey={characterList.length + 1}
+                >
+                  Click me!
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey={characterList.length + 1}>
+                <Card.Body>Hello! I'm another body</Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+          <header className="h2">Your Groups:</header>
+        </>
       )}
     </Container>
   );

@@ -81,7 +81,7 @@ export const GET_ALL_USERS = gql`
   }
 `;
 
-export const GET_Characters = gql`
+export const GET_CHARACTERS = gql`
   query characters {
     characters {
       characterName
