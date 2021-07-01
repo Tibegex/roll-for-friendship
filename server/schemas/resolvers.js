@@ -20,12 +20,12 @@ const resolvers = {
       return User.find().populate("characters").populate("groups");
     },
 
-    characters: async () => {
-      return Character.find({});
+    characters: async (parent, args) => {
+      return Character.find(args);
     },
 
-    groups: async () => {
-      return Group.find({});
+    groups: async (parent, args) => {
+      return Group.find(args);
     },
   },
 
@@ -94,10 +94,10 @@ const resolvers = {
     addGroup: async (parent, { input }, context) => {
       const group = await Group.create(input);
 
-      // await User.findOneAndUpdate(
-      //   { _id: context.user._id },
-      //   { $addToSet: { groups: group._id } }
-      // );
+      await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { groups: group._id } }
+      );
 
       return group;
     },

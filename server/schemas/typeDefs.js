@@ -10,7 +10,7 @@ const typeDefs = gql`
     level: Int
     role: String
     notes: String
-    user: String!
+    user: String
   }
 
   type Group {
@@ -63,6 +63,7 @@ const typeDefs = gql`
       role: String
       notes: String
     ): [Character]
+
     groups(
       campaignName: String
       gameVersion: String
@@ -91,7 +92,7 @@ const typeDefs = gql`
     level: Int
     role: String
     notes: String
-    user: String!
+    user: String
   }
 
   input groupInput {
