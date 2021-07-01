@@ -75,30 +75,30 @@ export const ADD_CHARACTER = gql`
 
 export const ADD_GROUP = gql`
   mutation addGroup(
-    campaignName: String!
-    gameVersion: String
-    meetingTime: String
-    meetingTimezone: String
-    weekday: String
-    frequencyTimes: Int
-    frequencyPeriod: String
-    gameLocationCity: String
-    gameLocationState: String
-    vTTUsed: String
-    currentCampaignLevel: Int
-    minPlayerLevel: String
-    discordChannel: String
-    notes: String
-    profanityLevel: String
-    characters: [Character]
-    lookingFor: [String]
+    $campaignName: String!
+    $gameVersion: String
+    $meetingTime: String
+    $meetingTimezone: String
+    $weekday: String
+    $frequencyTimes: Int
+    $frequencyPeriod: String
+    $gameLocationCity: String
+    $gameLocationState: String
+    $vTTUsed: String
+    $currentCampaignLevel: Int
+    $minPlayerLevel: String
+    $discordChannel: String
+    $notes: String
+    $profanityLevel: String
+    $characters: [Character]
+    $lookingFor: [String]
   ) {
     addGroup(
       campaignName: $campaignName
       gameVersion: $gameVersion
       meetingTime: $meetingTime
-      meetingTimezone:  $meetingTimezone
-     weekday: $weekday
+      meetingTimezone: $meetingTimezone
+      weekday: $weekday
       frequencyTimes: $frequencyTimes
       frequencyPeriod: $frequencyPeriod
       gameLocationCity: $gameLocationCity
