@@ -73,9 +73,41 @@ export const ADD_CHARACTER = gql`
   }
 `;
 
-export const ADD_GROUP = gql`
-  mutation addGroup(
-    $campaignName: String!
+export const UPDATE_CHARACTER = gql`
+  mutation updateCharacter(
+    $characterName: String
+    $class: String
+    $race: String
+    $backstory: String
+    $level: Int
+    $role: String
+    $notes: String
+  ) {
+    updateCharacter(
+      characterName: $characterName
+      class: $class
+      race: $race
+      backstory: $backstory
+      level: $level
+      role: $role
+      notes: $notes
+    ) {
+      character {
+        characterName
+        class
+        race
+        backstory
+        level
+        role
+        notes
+      }
+    }
+  }
+`;
+
+export const UPDATE_GROUP = gql`
+  mutation updateGroup(
+    $campaignName: String
     $gameVersion: String
     $meetingTime: String
     $meetingTimezone: String
@@ -93,7 +125,7 @@ export const ADD_GROUP = gql`
     $characters: [Character]
     $lookingFor: [String]
   ) {
-    addGroup(
+    updateGroup(
       campaignName: $campaignName
       gameVersion: $gameVersion
       meetingTime: $meetingTime
