@@ -54,6 +54,7 @@ const typeDefs = gql`
   type Query {
     user(realName: String): User
     users: [User]
+    me: User
     characters(
       characterName: String
       class: String
