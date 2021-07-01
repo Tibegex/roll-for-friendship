@@ -5,10 +5,14 @@
 .h2 {
   font-family: "Cinzel Decorative", cursive;
   text-align: center;
+  text-shadow: 2px 2px 12px rgb(202, 184, 243);
+  color: rgb(186, 173, 199);
+  margin-top: 6%;
 }
 
 .welcome {
   font-family: "Cinzel Decorative", cursive;
   font-family: "Vollkorn", serif;
   text-align: center;
+  color: aliceblue;
 }
