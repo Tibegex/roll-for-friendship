@@ -42,3 +42,29 @@ export const LOGIN_USER = gql`
       }
   }
 `;
+
+export const ADD_USER = gql`
+  mutation addUser(
+    $realName: String!
+    $email: String!
+    $password: String!
+    playerLevel: String
+    city: String
+    state: String
+  ) {
+    addUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+      playerLevel: $playerLevel
+      city: $city
+      state: $state
+    ) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
