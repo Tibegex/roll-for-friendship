@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
-import Auth from "../utils/auth";
+import Auth from "../../utils/auth";
 import "./homeStyle.css";
 
-import LoginForm from "../components/LoginForm";
-import SignUpForm from "../components/SignUpForm";
+import LoginForm from "../../components/LoginForm";
+import SignUpForm from "../../components/SignUpForm";
 
 const Home = () => {
   return (
