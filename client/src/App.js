@@ -11,6 +11,7 @@ import { setContext } from "@apollo/client/link/context";
 import { StoreProvider } from "./utils/GlobalState";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
+import Search from "./pages/Search";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -41,6 +42,7 @@ function App() {
             <div className="container-xl">
               <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/Search" component={Search} />
               </Switch>
             </div>
           </StoreProvider>
