@@ -3,9 +3,10 @@ nav {
 }
 
 #navbar {
+  min-width: 420px;
   background-image: linear-gradient(
-    to bottom right,
+    to bottom,
     rgba(81, 23, 104),
-    rgba(12, 66, 97)
+    rgba(40, 51, 74)
   );
 }
