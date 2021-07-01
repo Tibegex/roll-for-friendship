@@ -6,7 +6,8 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     user: async (parent, args, context) => {
-      const userName = args.user.realName || context.user.realName;
+      console.log(context.user);
+      const userName = args.realName || context.user.realName;
       if (userName) {
         return User.findOne({ realName: userName })
           .populate("characters")
@@ -27,15 +28,15 @@ const resolvers = {
       return Group.find();
     },
 
-    userCharacters: async (parent, { realName }, context) => {
-      const params = realName ? { realName } : {};
-      return Character.find(params);
-    },
+    // userCharacters: async (parent, { realName }, context) => {
+    //   const params = realName ? { realName } : {};
+    //   return Character.find(params);
+    // },
 
-    userGroups: async (parent, { realName }, context) => {
-      const params = realName ? { realName } : {};
-      return Group.find(params);
-    },
+    // userGroups: async (parent, { realName }, context) => {
+    //   const params = realName ? { realName } : {};
+    //   return Group.find(params);
+    // },
   },
 
   Mutation: {

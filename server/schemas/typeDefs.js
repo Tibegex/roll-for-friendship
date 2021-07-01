@@ -55,9 +55,7 @@ const typeDefs = gql`
     user(realName: String): User
     users: [User]
     characterAll: [Character]
-    userCharacters(realName: String): [Character]
     groupAll: [Group]
-    userGroups(realName: String): [Group]
   }
 
   input characterInput {
@@ -100,7 +98,9 @@ const typeDefs = gql`
       city: String
       state: String
     ): Auth
+
     login(email: String!, password: String!): Auth
+
     updateUser(
       realName: String
       email: String
@@ -109,6 +109,7 @@ const typeDefs = gql`
       city: String
       state: String
     ): User
+
     addCharacter(input: characterInput): Character
     updateCharacter(input: characterInput): Character
     deleteCharacter(characterId: ID!): Character
