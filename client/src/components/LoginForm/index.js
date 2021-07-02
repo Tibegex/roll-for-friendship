@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { Form, Button } from "react-bootstrap";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+import "./loginStyle.css";
 
 const LoginForm = () => {
   // local state variable
