@@ -137,11 +137,68 @@ const typeDefs = gql`
       state: String
     ): User
 
-    addCharacter(input: characterInput): Character
-    updateCharacter(input: characterInput): Character
+    addCharacter(
+      characterName: String!
+      class: String!
+      race: String
+      backstory: String
+      level: Int
+      role: String
+      notes: String
+    ): Character
+
+    addGroup(
+      campaignName: String!
+      gameVersion: String
+      meetingTime: String
+      meetingTimezone: String
+      weekday: String
+      frequencyTimes: Int
+      frequencyPeriod: String
+      gameLocationCity: String
+      gameLocationState: String
+      vTTUsed: String
+      currentCampaignLevel: Int
+      minPlayerLevel: String
+      discordChannel: String
+      notes: String
+      profanityLevel: String
+      characters: [String]
+      lookingFor: [String]
+    ): Group
+
+    updateCharacter(
+      characterName: String!
+      class: String!
+      race: String
+      backstory: String
+      level: Int
+      role: String
+      notes: String
+    ): Character
+
     deleteCharacter(characterId: ID!): Character
-    addGroup(input: groupInput): Group
-    updateGroup(input: groupInput): Group
+
+    updateGroup(
+      campaignName: String!
+      gameVersion: String
+      meetingTime: String
+      meetingTimezone: String
+      weekday: String
+      frequencyTimes: Int
+      frequencyPeriod: String
+      gameLocationCity: String
+      gameLocationState: String
+      vTTUsed: String
+      currentCampaignLevel: Int
+      minPlayerLevel: String
+      discordChannel: String
+      notes: String
+      profanityLevel: String
+      characters: [String]
+      lookingFor: [String]
+    ): Group
+
     deleteGroup(groupId: ID!): Group
   }
 `;
