@@ -19,6 +19,7 @@ import "./homeStyle.css";
 import LoginForm from "../../components/LoginForm";
 import SignUpForm from "../../components/SignUpForm";
 import CharacterList from "../../components/CharacterList";
+import AddCharacterForm from "../../components/AddCharacterForm";
 import GroupList from "../../components/GroupList";
 
 const Home = () => {
@@ -28,8 +29,8 @@ const Home = () => {
   let characterList = [];
   let groupList = [];
 
-  if (data) {
-    user = data.user;
+  if (data && Auth.loggedIn()) {
+    user = data?.user || [];
     characterList = user.characterList;
     groupList = user.groupList;
   }
@@ -80,7 +81,9 @@ const Home = () => {
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={characterList.length + 1}>
-                <Card.Body>Add Character Form</Card.Body>
+                <Card.Body>
+                  <AddCharacterForm />
+                </Card.Body>
               </Accordion.Collapse>
             </Card>
           </Accordion>
