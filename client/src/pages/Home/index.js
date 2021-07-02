@@ -21,6 +21,7 @@ import SignUpForm from "../../components/SignUpForm";
 import CharacterList from "../../components/CharacterList";
 import AddCharacterForm from "../../components/AddCharacterForm";
 import GroupList from "../../components/GroupList";
+import AddGroupForm from "../../components/AddGroupForm";
 
 const Home = () => {
   const { data, loading, error } = useQuery(GET_ME);
@@ -77,7 +78,7 @@ const Home = () => {
                   variant="link"
                   eventKey={characterList.length + 1}
                 >
-                  Click me!
+                  +character
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={characterList.length + 1}>
@@ -94,18 +95,20 @@ const Home = () => {
                   <GroupList character={group} index={index} key={index} />
                 ))
               : null}
-            <Card key="addChar">
+            <Card key="addGroup">
               <Card.Header>
                 <Accordion.Toggle
                   as={Button}
                   variant="link"
                   eventKey={groupList.length + 1}
                 >
-                  Click me!
+                  +group
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={groupList.length + 1}>
-                <Card.Body>Add Group Form Here</Card.Body>
+                <Card.Body>
+                  <AddGroupForm />
+                </Card.Body>
               </Accordion.Collapse>
             </Card>
           </Accordion>
