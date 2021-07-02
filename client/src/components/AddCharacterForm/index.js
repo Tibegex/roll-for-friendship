@@ -13,9 +13,8 @@ const AddCharacterForm = ({ index }) => {
     characterName: "",
     class: "",
     race: "",
-    playerLevel: "",
+    level: 0,
     backstory: "",
-    level: "",
     role: "",
     notes: "",
   });
@@ -23,10 +22,16 @@ const AddCharacterForm = ({ index }) => {
   const [addCharacter] = useMutation(ADD_CHARACTER);
 
   const handleSubmit = async (event) => {
-    event.prevent.default();
+    event.preventDefault();
 
-    console.log({ ...formState });
-    addCharacter({ ...formState });
+    console.log("in handle submit");
+    console.log("formstate:", { ...formState });
+
+    const character = await addCharacter({ variables: { ...formState } });
+    console.log(character);
+    {
+      console.log(classList, raceList, roleList);
+    }
   };
 
   // set up the controls to handle the state of the fields in the form (controlled form)
@@ -40,7 +45,6 @@ const AddCharacterForm = ({ index }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      {console.log(classList, raceList, roleList)}
       <Form.Group controlId="characterName">
         <Form.Label>Enter your Character's name:</Form.Label>
         <Form.Control

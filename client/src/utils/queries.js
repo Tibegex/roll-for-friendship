@@ -42,7 +42,7 @@ export const GET_USER = gql`
 
 export const GET_ME = gql`
   query user {
-    user {
+    me {
       _id
       realName
       email

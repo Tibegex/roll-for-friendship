@@ -45,7 +45,7 @@ export const ADD_CHARACTER = gql`
   mutation addCharacter(
     $characterName: String!
     $class: String!
-    $race: String!
+    $race: String
     $backstory: String
     $level: Int
     $role: String
@@ -60,15 +60,13 @@ export const ADD_CHARACTER = gql`
       role: $role
       notes: $notes
     ) {
-      character {
-        characterName
-        class
-        race
-        backstory
-        level
-        role
-        notes
-      }
+      characterName
+      class
+      race
+      backstory
+      level
+      role
+      notes
     }
   }
 `;

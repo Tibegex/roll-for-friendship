@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const Group = require("./Group");
-const Character = require("./Character");
 
 const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
@@ -33,8 +31,18 @@ const userSchema = new Schema({
     type: String,
     trim: true,
   },
-  groups: [Group.schema],
-  characters: [Character.schema],
+  groups: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Group",
+    },
+  ],
+  characters: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Character",
+    },
+  ],
 });
 
 // set up pre-save middleware to create password
