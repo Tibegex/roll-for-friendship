@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Form, Col, Button } from "react-bootstrap";
 import Auth from "../../utils/auth";
+import { Redirect } from "react-router-dom";
 
 const Search = () => {
   return (
@@ -38,7 +39,7 @@ const Search = () => {
           </Button>
         </Form.Group>
       ) : (
-        <>route to login</>
+        <Redirect to="/" />
       )}
     </Container>
   );
