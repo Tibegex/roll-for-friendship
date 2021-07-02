@@ -6,7 +6,6 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     user: async (parent, args, context) => {
-      console.log(context.user);
       const userName = args.realName || context.user.realName;
       if (userName) {
         return User.findOne({ realName: userName })
@@ -18,9 +17,10 @@ const resolvers = {
 
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id })
+        const user = await User.findOne({ _id: context.user._id })
           .populate("characters")
           .populate("groups");
+        return user;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -74,7 +74,6 @@ const resolvers = {
     },
 
     addCharacter: async (parent, args, context) => {
-      console.log("in addCharacter resolver", args);
       const character = await Character.create(args);
 
       await User.findOneAndUpdate(

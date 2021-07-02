@@ -3,8 +3,8 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type Character {
     _id: ID!
-    characterName: String!
-    class: String!
+    characterName: String
+    class: String
     race: String
     backstory: String
     level: Int
@@ -15,7 +15,7 @@ const typeDefs = gql`
 
   type Group {
     _id: ID!
-    campaignName: String!
+    campaignName: String
     gameVersion: String
     meetingTime: String
     meetingTimezone: String
