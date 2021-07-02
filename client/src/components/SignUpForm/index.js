@@ -73,7 +73,7 @@ const SignUpForm = () => {
         </Form.Text>
       </Form.Group>
 
-      <Form.Group controlId="email">
+      <Form.Group controlId="signUpEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control
           required
@@ -88,7 +88,7 @@ const SignUpForm = () => {
         </Form.Text>
       </Form.Group>
 
-      <Form.Group controlId="password">
+      <Form.Group controlId="signUpPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control
           required
