@@ -174,7 +174,7 @@ export const UPDATE_GROUP = gql`
         minPlayerLevel
         discordChannel
         notes
-        profanityLeve
+        profanityLevel
         characters
         lookingFor
       }
@@ -200,7 +200,7 @@ export const DELETE_GROUP = gql`
         minPlayerLevel
         discordChannel
         notes
-        profanityLeve
+        profanityLevel
         characters
         lookingFor
       }
