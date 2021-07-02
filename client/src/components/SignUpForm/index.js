@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
@@ -22,7 +22,7 @@ const SignUpForm = () => {
   const [remoteOnlyChecked, setRemoteOnlyChecked] = useState(false);
 
   // set up mutation for signing up
-  const [addUser] = useMutation(ADD_USER);
+  const [addUser, error] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -126,7 +126,6 @@ const SignUpForm = () => {
           label="I only want to play via remote"
           value={remoteOnlyChecked}
           onChange={() => {
-            console.log("checkbox clicked: ", remoteOnlyChecked);
             setRemoteOnlyChecked(!remoteOnlyChecked);
           }}
         />
@@ -161,6 +160,8 @@ const SignUpForm = () => {
           </Form.Group>
         </>
       )}
+
+      {error ? <Alert variant="danger">{error.message}</Alert> : null}
 
       <Button variant="primary" type="submit">
         Submit

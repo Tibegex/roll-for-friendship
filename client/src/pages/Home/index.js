@@ -30,9 +30,9 @@ const Home = () => {
   let groupList = [];
 
   if (data && Auth.loggedIn()) {
-    user = data?.user || [];
-    characterList = user.characterList;
-    groupList = user.groupList;
+    user = data.user;
+    characterList = user.characters;
+    groupList = user.groups;
   }
 
   return (

@@ -14,7 +14,7 @@ const LoginForm = () => {
   // do the actual login on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(event.target, formState);
+
     try {
       const mutationResponse = await login({
         variables: { email: formState.email, password: formState.password },
@@ -29,7 +29,6 @@ const LoginForm = () => {
   // set up the controls to handle the state of the fields in the form (controlled form)
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log("name", name, ":", "value", value);
     setFormState({
       ...formState,
       [name]: value,
@@ -57,7 +56,7 @@ const LoginForm = () => {
           onChange={handleChange}
         />
       </Form.Group>
-      {error ? <Alert variant="danger">{error}</Alert> : null}
+      {error ? <Alert variant="danger">{error.message}</Alert> : null}
       <Button variant="primary" type="submit">
         Submit
       </Button>
