@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { Form, Button } from "react-bootstrap";
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_CHARACTER } from "../../utils/mutations";
-import Auth from "../../utils/auth";
+// import Auth from "../../utils/auth";
 
 const AddCharacterForm = ({ index }) => {
   const [state, dispatch] = useStoreContext();
@@ -40,6 +40,7 @@ const AddCharacterForm = ({ index }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
+      {console.log(classList, raceList, roleList)}
       <Form.Group controlId="characterName">
         <Form.Label>Enter your real name</Form.Label>
         <Form.Control

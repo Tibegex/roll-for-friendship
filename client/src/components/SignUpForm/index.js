@@ -65,7 +65,7 @@ const SignUpForm = () => {
         <Form.Control
           required
           type="text"
-          placeholder="realName"
+          placeholder="Real Name"
           name="realName"
           onChange={handleChange}
         />
@@ -74,7 +74,7 @@ const SignUpForm = () => {
         </Form.Text>
       </Form.Group>
 
-      <Form.Group controlId="email">
+      <Form.Group controlId="signUpEmail">
         <Form.Label className="formFont">Email address</Form.Label>
         <Form.Control
           required
@@ -89,7 +89,7 @@ const SignUpForm = () => {
         </Form.Text>
       </Form.Group>
 
-      <Form.Group controlId="password">
+      <Form.Group controlId="signUpPassword">
         <Form.Label className="formFont">Password</Form.Label>
         <Form.Control
           required

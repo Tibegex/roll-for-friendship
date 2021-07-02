@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import "../../pages/Home/index";
@@ -38,7 +38,7 @@ const LoginForm = () => {
 
   return (
     <Form onSubmit={handleFormSubmit}>
-      <Form.Group controlId="email">
+      <Form.Group controlId="loginEmail">
         <Form.Label className="formFont">Email address</Form.Label>
         <Form.Control
           type="email"
@@ -57,6 +57,7 @@ const LoginForm = () => {
           onChange={handleChange}
         />
       </Form.Group>
+      {error ? <Alert variant="danger">{error}</Alert> : null}
       <Button variant="primary" type="submit">
         Submit
       </Button>
