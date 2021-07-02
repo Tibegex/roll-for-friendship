@@ -65,6 +65,12 @@ const StoreProvider = ({ value = [], ...props }) => {
       { abrv: "WI", state: " Wisconsin" },
       { abrv: "WY", state: " Wyoming" },
     ],
+
+    classList: [],
+
+    raceList: [],
+
+    roleList: [],
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
