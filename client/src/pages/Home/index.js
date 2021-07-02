@@ -23,17 +23,20 @@ import AddCharacterForm from "../../components/AddCharacterForm";
 import GroupList from "../../components/GroupList";
 
 const Home = () => {
-  const { data } = useQuery(GET_ME);
+  const { data, error } = useQuery(GET_ME);
+
+  // console.log("error:", error);
 
   let user = [];
   let characterList = [];
   let groupList = [];
 
   if (data && Auth.loggedIn()) {
-    user = data?.user || [];
-    characterList = user.characterList;
-    groupList = user.groupList;
+    user = data.user;
+    characterList = user.characters;
+    groupList = user.groups;
   }
+  console.log(user);
 
   return (
     <Container>

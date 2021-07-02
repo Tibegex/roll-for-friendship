@@ -59,7 +59,7 @@ export const GET_ME = gql`
         frequencyPeriod
         gameLocationCity
         gameLocationState
-        vttUsed
+        vTTUsed
         currentCampaignLevel
         minPlayerLevel
         discordChannel
@@ -74,7 +74,6 @@ export const GET_ME = gql`
         level
         role
         notes
-        user
       }
     }
   }
