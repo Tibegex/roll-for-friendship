@@ -23,17 +23,11 @@ import AddCharacterForm from "../../components/AddCharacterForm";
 import GroupList from "../../components/GroupList";
 
 const Home = () => {
-  const { data } = useQuery(GET_ME);
+  const { data, loading, error } = useQuery(GET_ME);
 
-  let user = [];
-  let characterList = [];
-  let groupList = [];
-
-  if (data && Auth.loggedIn()) {
-    user = data.user;
-    characterList = user.characters;
-    groupList = user.groups;
-  }
+  const user = data?.me || {};
+  const characterList = user.characters || [];
+  const groupList = user.groups || [];
 
   return (
     <Container>
@@ -67,9 +61,15 @@ const Home = () => {
         <>
           <header className="h2">Your Characters:</header>
           <Accordion>
-            {characterList.map((character, index) => (
-              <CharacterList character={character} index={index} key={index} />
-            ))}
+            {characterList.length > 0
+              ? characterList.map((character, index) => (
+                  <CharacterList
+                    character={character}
+                    index={index}
+                    key={index}
+                  />
+                ))
+              : null}
             <Card key="addChar">
               <Card.Header>
                 <Accordion.Toggle
@@ -89,9 +89,11 @@ const Home = () => {
           </Accordion>
           <header className="h2">Your Groups:</header>
           <Accordion>
-            {groupList.map((group, index) => (
-              <GroupList character={group} index={index} key={index} />
-            ))}
+            {groupList.length > 0
+              ? groupList.map((group, index) => (
+                  <GroupList character={group} index={index} key={index} />
+                ))
+              : null}
             <Card key="addChar">
               <Card.Header>
                 <Accordion.Toggle
