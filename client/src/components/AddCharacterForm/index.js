@@ -89,7 +89,7 @@ const AddCharacterForm = ({ index }) => {
         <Form.Control
           as="textarea"
           rows={3}
-          placeholder="Notes"
+          placeholder="Notes            ........created by Alt-CJ"
           name="notes"
           onChange={handleChange}
         />
