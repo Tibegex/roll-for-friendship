@@ -12,6 +12,7 @@ import { StoreProvider } from "./utils/GlobalState";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
+import UserSearch from "./components/UserSearch";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -43,6 +44,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/Search" component={Search} />
+                <Route exact path="/UserSearch" component={UserSearch} />
               </Switch>
             </div>
           </StoreProvider>
