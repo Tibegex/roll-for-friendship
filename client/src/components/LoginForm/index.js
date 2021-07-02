@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
@@ -60,6 +60,7 @@ const LoginForm = () => {
           onChange={handleChange}
         />
       </Form.Group>
+      {error ? <Alert variant="danger">{error}</Alert> : null}
       <Button variant="primary" type="submit">
         Submit
       </Button>
