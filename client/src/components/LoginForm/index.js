@@ -38,7 +38,9 @@ const LoginForm = () => {
   return (
     <Form onSubmit={handleFormSubmit}>
       <Form.Group controlId="email">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label style={{ color: "rgb(178, 218, 253)" }}>
+          Email address
+        </Form.Label>
         <Form.Control
           type="email"
           placeholder="Enter email"
@@ -48,7 +50,9 @@ const LoginForm = () => {
       </Form.Group>
 
       <Form.Group controlId="password">
-        <Form.Label>Password</Form.Label>
+        <Form.Label style={{ color: "rgb(178, 218, 253)" }}>
+          Password
+        </Form.Label>
         <Form.Control
           type="password"
           placeholder="Password"
