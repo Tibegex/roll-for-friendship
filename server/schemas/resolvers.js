@@ -73,8 +73,9 @@ const resolvers = {
       return { token, user };
     },
 
-    addCharacter: async (parent, { input }, context) => {
-      const character = await Character.create(input);
+    addCharacter: async (parent, args, context) => {
+      console.log("in addCharacter resolver", args);
+      const character = await Character.create(args);
 
       await User.findOneAndUpdate(
         { _id: context.user._id },
@@ -84,15 +85,15 @@ const resolvers = {
       return character;
     },
 
-    updateCharacter: async (parent, { id, input }) => {
+    updateCharacter: async (parent, { id, args }) => {
       return await Character.findByIdAndUpdate(
-        { _id: id },
-        { input },
+        { _id: args.id },
+        { args },
         { new: true }
       );
     },
 
-    updateGroup: async (parent, { input }) => {
+    updateGroup: async (parent, args) => {
       return await Group.findByIdAndUpdate(
         { _id: id },
         { input },
@@ -100,8 +101,8 @@ const resolvers = {
       );
     },
 
-    addGroup: async (parent, { input }, context) => {
-      const group = await Group.create(input);
+    addGroup: async (parent, args, context) => {
+      const group = await Group.create(args);
 
       await User.findOneAndUpdate(
         { _id: context.user._id },
