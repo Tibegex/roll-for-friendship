@@ -126,7 +126,6 @@ const SignUpForm = () => {
           label="I only want to play via remote"
           value={remoteOnlyChecked}
           onChange={() => {
-            console.log("checkbox clicked: ", remoteOnlyChecked);
             setRemoteOnlyChecked(!remoteOnlyChecked);
           }}
         />

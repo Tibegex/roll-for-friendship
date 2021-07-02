@@ -34,7 +34,6 @@ const Home = () => {
     characterList = user.characters;
     groupList = user.groups;
   }
-  console.log(user);
 
   return (
     <Container>

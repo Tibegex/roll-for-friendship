@@ -14,7 +14,7 @@ const LoginForm = () => {
   // do the actual login on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(event.target, formState);
+
     try {
       const mutationResponse = await login({
         variables: { email: formState.email, password: formState.password },
