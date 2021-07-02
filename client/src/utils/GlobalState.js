@@ -71,6 +71,8 @@ const StoreProvider = ({ value = [], ...props }) => {
     raceList: [],
 
     roleList: [],
+
+    currentUser: {},
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

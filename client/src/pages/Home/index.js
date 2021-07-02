@@ -20,6 +20,7 @@ import LoginForm from "../../components/LoginForm";
 import SignUpForm from "../../components/SignUpForm";
 import CharacterList from "../../components/CharacterList";
 import AddCharacterForm from "../../components/AddCharacterForm";
+import GroupList from "../../components/GroupList";
 
 const Home = () => {
   const { data } = useQuery(GET_ME);
@@ -89,7 +90,7 @@ const Home = () => {
           <header className="h2">Your Groups:</header>
           <Accordion>
             {groupList.map((group, index) => (
-              <groupList character={group} index={index} key={index} />
+              <GroupList character={group} index={index} key={index} />
             ))}
             <Card key="addChar">
               <Card.Header>
