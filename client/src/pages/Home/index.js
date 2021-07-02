@@ -23,9 +23,7 @@ import AddCharacterForm from "../../components/AddCharacterForm";
 import GroupList from "../../components/GroupList";
 
 const Home = () => {
-  const { data, error } = useQuery(GET_ME);
-
-  // console.log("error:", error);
+  const { data } = useQuery(GET_ME);
 
   let user = [];
   let characterList = [];
