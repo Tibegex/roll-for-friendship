@@ -4,6 +4,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+import "../../pages/Home/index";
 
 const SignUpForm = () => {
   const [state, dispatch] = useStoreContext();
@@ -60,11 +61,11 @@ const SignUpForm = () => {
   return (
     <Form onSubmit={handleFormSubmit}>
       <Form.Group controlId="realName">
-        <Form.Label>Enter your real name</Form.Label>
+        <Form.Label className="formFont">Enter your real name</Form.Label>
         <Form.Control
           required
           type="text"
-          placeholder="realName"
+          placeholder="Real Name"
           name="realName"
           onChange={handleChange}
         />
@@ -74,7 +75,7 @@ const SignUpForm = () => {
       </Form.Group>
 
       <Form.Group controlId="signUpEmail">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label className="formFont">Email address</Form.Label>
         <Form.Control
           required
           type="email"
@@ -89,7 +90,7 @@ const SignUpForm = () => {
       </Form.Group>
 
       <Form.Group controlId="signUpPassword">
-        <Form.Label>Password</Form.Label>
+        <Form.Label className="formFont">Password</Form.Label>
         <Form.Control
           required
           type="password"
@@ -100,7 +101,9 @@ const SignUpForm = () => {
       </Form.Group>
 
       <Form.Group controlId="playerLevel">
-        <Form.Label>What is your level of play?</Form.Label>
+        <Form.Label className="formFont">
+          What is your level of play?
+        </Form.Label>
         <Form.Control
           as="select"
           required
@@ -118,6 +121,7 @@ const SignUpForm = () => {
 
       <Form.Group controlId="remoteOnlyCheckbox">
         <Form.Check
+          className="formFont"
           type="checkbox"
           label="I only want to play via remote"
           value={remoteOnlyChecked}
@@ -131,7 +135,7 @@ const SignUpForm = () => {
       {remoteOnlyChecked ? null : (
         <>
           <Form.Group controlId="city">
-            <Form.Label>city</Form.Label>
+            <Form.Label className="formFont">city</Form.Label>
             <Form.Control
               type="text"
               placeholder="city"
@@ -141,7 +145,7 @@ const SignUpForm = () => {
           </Form.Group>
 
           <Form.Group controlId="state">
-            <Form.Label>State</Form.Label>
+            <Form.Label className="formFont">State</Form.Label>
             <Form.Control
               as="select"
               placeholder="state"

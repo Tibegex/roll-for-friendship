@@ -26,7 +26,7 @@ function CharacterList({ character, index }) {
             <br />
             <span className="font-weight-bold">Notes: </span>
             <br />
-            {character.characterName}
+            {character.notes}
           </Card.Body>
         </Accordion.Collapse>
       </Card>

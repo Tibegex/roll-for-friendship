@@ -42,22 +42,51 @@ const AddCharacterForm = ({ index }) => {
     <Form onSubmit={handleSubmit}>
       {console.log(classList, raceList, roleList)}
       <Form.Group controlId="characterName">
-        <Form.Label>Enter your real name</Form.Label>
+        <Form.Label>Enter your Character's name:</Form.Label>
         <Form.Control
           required
           type="text"
-          placeholder="characterName"
+          placeholder="Character Name"
           name="characterName"
           onChange={handleChange}
         />
       </Form.Group>
       <Form.Group controlId="class">
-        <Form.Label>Enter your real name</Form.Label>
+        <Form.Label>Enter your Character's class:</Form.Label>
         <Form.Control
           required
           type="text"
-          placeholder="class"
+          placeholder="Class"
           name="class"
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="race">
+        <Form.Label>Enter your Character's race:</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Race"
+          name="race"
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="backstory">
+        <Form.Label>Enter your Characters backstory</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={3}
+          placeholder="Backstory"
+          name="backstory"
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="notes">
+        <Form.Label>Enter any additional notes:</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={3}
+          placeholder="Notes"
+          name="notes"
           onChange={handleChange}
         />
       </Form.Group>

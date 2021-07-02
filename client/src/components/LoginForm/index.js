@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { Form, Button, Alert } from "react-bootstrap";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+import "../../pages/Home/index";
 
 const LoginForm = () => {
   // local state variable
@@ -37,9 +38,7 @@ const LoginForm = () => {
   return (
     <Form onSubmit={handleFormSubmit}>
       <Form.Group controlId="loginEmail">
-        <Form.Label style={{ color: "rgb(178, 218, 253)" }}>
-          Email address
-        </Form.Label>
+        <Form.Label className="formFont">Email address</Form.Label>
         <Form.Control
           type="email"
           placeholder="Enter email"
@@ -48,10 +47,8 @@ const LoginForm = () => {
         />
       </Form.Group>
 
-      <Form.Group controlId="loginPassword">
-        <Form.Label style={{ color: "rgb(178, 218, 253)" }}>
-          Password
-        </Form.Label>
+      <Form.Group controlId="password">
+        <Form.Label className="formFont">Password</Form.Label>
         <Form.Control
           type="password"
           placeholder="Password"
