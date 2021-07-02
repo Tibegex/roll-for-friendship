@@ -77,7 +77,7 @@ const Home = () => {
                   variant="link"
                   eventKey={characterList.length + 1}
                 >
-                  Click me!
+                  +character
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={characterList.length + 1}>
@@ -92,14 +92,14 @@ const Home = () => {
             {groupList.map((group, index) => (
               <GroupList character={group} index={index} key={index} />
             ))}
-            <Card key="addChar">
+            <Card key="addGroup">
               <Card.Header>
                 <Accordion.Toggle
                   as={Button}
                   variant="link"
                   eventKey={groupList.length + 1}
                 >
-                  Click me!
+                  +group
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={groupList.length + 1}>
