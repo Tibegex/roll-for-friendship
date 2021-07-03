@@ -152,7 +152,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       "Trapper",
     ],
 
-    currentUser: {},
+    currentUserName: "",
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
