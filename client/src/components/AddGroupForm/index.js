@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Form, Button } from "react-bootstrap";
 import { useStoreContext } from "../../utils/GlobalState";
-import { ADD_CHARACTER, ADD_GROUP } from "../../utils/mutations";
-// import Auth from "../../utils/auth";
+import { ADD_GROUP } from "../../utils/mutations";
 
 const AddGroupForm = ({ index }) => {
-  const [state, dispatch] = useStoreContext();
+  const [state] = useStoreContext();
   const { classList, raceList, roleList, stateList } = state;
 
   const [formState, setFormState] = useState({
@@ -40,7 +39,6 @@ const AddGroupForm = ({ index }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      {console.log(classList, raceList, roleList)}
       <Form.Group controlId="campaignName">
         <Form.Label>Enter Campaign name:</Form.Label>
         <Form.Control
