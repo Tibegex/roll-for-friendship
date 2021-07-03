@@ -40,13 +40,11 @@ function App() {
         <div>
           <StoreProvider>
             <Nav />
-            <div className="container-xl">
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/Search" component={Search} />
-                <Route exact path="/UserSearch" component={UserSearch} />
-              </Switch>
-            </div>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/Search" component={Search} />
+              <Route exact path="/UserSearch" component={UserSearch} />
+            </Switch>
           </StoreProvider>
         </div>
       </Router>

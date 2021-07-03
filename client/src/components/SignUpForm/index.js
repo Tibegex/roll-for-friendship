@@ -134,10 +134,10 @@ const SignUpForm = () => {
       {remoteOnlyChecked ? null : (
         <>
           <Form.Group controlId="city">
-            <Form.Label className="formFont">city</Form.Label>
+            <Form.Label className="formFont">City</Form.Label>
             <Form.Control
               type="text"
-              placeholder="city"
+              placeholder="City"
               name="city"
               onChange={handleChange}
             />
@@ -161,7 +161,7 @@ const SignUpForm = () => {
         </>
       )}
 
-      {error ? <Alert variant="danger">{error.message}</Alert> : null}
+      {error.message ? <Alert variant="danger">{error.message}</Alert> : null}
 
       <Button variant="primary" type="submit">
         Submit
