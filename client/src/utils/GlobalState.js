@@ -108,6 +108,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       "Goblin",
       "Goliath",
       "Hobgoblin",
+      "Human",
       "Kalashtar",
       "Kenku",
       "Khenra",
