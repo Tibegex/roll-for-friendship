@@ -1,6 +1,5 @@
 import React from "react";
 
-import { useQuery } from "@apollo/client";
 import {
   Container,
   Row,
@@ -11,10 +10,11 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
+import "./homeStyle.css";
 
+import { useQuery } from "@apollo/client";
 import { GET_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
-import "./homeStyle.css";
 
 import LoginForm from "../../components/LoginForm";
 import SignUpForm from "../../components/SignUpForm";
