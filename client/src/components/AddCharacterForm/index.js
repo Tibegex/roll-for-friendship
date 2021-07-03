@@ -3,10 +3,9 @@ import { useMutation } from "@apollo/client";
 import { Form, Button } from "react-bootstrap";
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_CHARACTER } from "../../utils/mutations";
-// import Auth from "../../utils/auth";
 
 const AddCharacterForm = ({ index }) => {
-  const [state, dispatch] = useStoreContext();
+  const [state] = useStoreContext();
   const { classList, raceList, roleList } = state;
 
   const [formState, setFormState] = useState({
@@ -67,23 +66,34 @@ const AddCharacterForm = ({ index }) => {
 
       <Form.Group controlId="class">
         <Form.Label>Enter your Character's class:</Form.Label>
-        <Form.Control
-          required
-          type="text"
-          placeholder="Class"
-          name="class"
-          onChange={handleChange}
-        />
+        <Form.Control as="select" name="class" onChange={handleChange}>
+          {classList.map((classOption, index) => (
+            <option value={classOption} key={index}>
+              {classOption}
+            </option>
+          ))}
+          <option value="other" key={classList.length + 1}>
+            Other...
+          </option>
+        </Form.Control>
       </Form.Group>
+      {formState.class === "other" ? (
+        <Form.Group controlID="classOther">
+          <Form.Label>
+            <bold>Please note, this class will not be searchable.</bold>
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Other..."
+            name="classOther"
+            onChange={handleChange}
+          />
+        </Form.Group>
+      ) : null}
 
       <Form.Group controlId="race">
         <Form.Label>Enter your Character's race:</Form.Label>
-        <Form.Control
-          as="select"
-          placeholder="Race"
-          name="race"
-          onChange={handleChange}
-        >
+        <Form.Control as="select" name="race" onChange={handleChange}>
           {raceList.map((race, index) => (
             <option value={race} key={index}>
               {race}
