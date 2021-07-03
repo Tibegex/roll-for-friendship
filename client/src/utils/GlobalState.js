@@ -133,7 +133,23 @@ const StoreProvider = ({ value = [], ...props }) => {
       "Yuan-ti Pureblood",
     ],
 
-    roleList: [],
+    roleList: [
+      "Tank",
+      "Damage",
+      "Healer",
+      "Support",
+      "Control",
+      "Face",
+      "Scout",
+      "Defender",
+      "Striker",
+      "Leader",
+      "Brawn",
+      "Spellcaster",
+      "Caster",
+      "Spotter",
+      "Trapper",
+    ],
 
     currentUser: {},
   });
