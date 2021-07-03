@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useStoreContext } from "../../utils/GlobalState";
 import "./navStyle.css";
 
 const Nav = () => {
+  const [state] = useStoreContext();
+
   return (
     <nav id="navbar" className="navbar">
       <div className="container-fluid">
@@ -17,6 +20,7 @@ const Nav = () => {
             ></img>
           </Link>
         </div>
+        <div className="h3">{state.currentUserName}</div>
       </div>
     </nav>
   );
