@@ -40,7 +40,6 @@ function App() {
         <div>
           <StoreProvider>
             <Nav />
-
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/Search" component={Search} />
