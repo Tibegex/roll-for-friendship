@@ -5,16 +5,10 @@ import { LOGIN_USER } from "../../utils/mutations";
 // CSS
 import { Form, Button, Alert } from "react-bootstrap";
 import "../../pages/Home/index";
-// State Store
-import { useStoreContext } from "../../utils/GlobalState";
-import { SET_CURRENT_USER } from "../../utils/actions";
 // Utility functions
 import Auth from "../../utils/auth";
 
 const LoginForm = () => {
-  // Get global state from State Store
-  const [state, dispatch] = useStoreContext();
-
   // local state variable
   const [formState, setFormState] = useState({ email: "", password: "" });
   // set up mutation for logging in
