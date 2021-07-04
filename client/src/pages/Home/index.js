@@ -92,7 +92,7 @@ const Home = () => {
           <Accordion>
             {groupList.length > 0
               ? groupList.map((group, index) => (
-                  <GroupList character={group} index={index} key={index} />
+                  <GroupList group={group} index={index} key={index} />
                 ))
               : null}
             <Card key="addGroup">

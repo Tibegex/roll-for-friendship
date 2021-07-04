@@ -55,7 +55,12 @@ const groupSchema = new Schema({
   profanityLevel: {
     type: String,
   },
-  characters: [Character.schema],
+  characters: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Character",
+    },
+  ],
   lookingFor: [{ type: String }],
 });
 

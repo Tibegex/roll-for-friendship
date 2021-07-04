@@ -90,15 +90,13 @@ export const UPDATE_CHARACTER = gql`
       role: $role
       notes: $notes
     ) {
-      character {
-        characterName
-        class
-        race
-        backstory
-        level
-        role
-        notes
-      }
+      characterName
+      class
+      race
+      backstory
+      level
+      role
+      notes
     }
   }
 `;
@@ -136,7 +134,6 @@ export const ADD_GROUP = gql`
     $discordChannel: String
     $notes: String
     $profanityLevel: String
-    $characters: [Character]
     $lookingFor: [String]
   ) {
     addGroup(
@@ -157,28 +154,26 @@ export const ADD_GROUP = gql`
       profanityLevel: $profanityLevel
       lookingFor: $lookingFor
     ) {
-      group {
-        campaignName
-        gameVersion
-        meetingTime
-        meetingTimezone
-        weekday
-        frequencyTimes
-        frequencyPeriod
-        gameLocationCity
-        gameLocationState
-        vTTUsed
-        currentCampaignLevel
-        minPlayerLevel
-        discordChannel
-        notes
-        profanityLevel
-        characters
-        lookingFor
-      }
+      campaignName
+      gameVersion
+      meetingTime
+      meetingTimezone
+      weekday
+      frequencyTimes
+      frequencyPeriod
+      gameLocationCity
+      gameLocationState
+      vTTUsed
+      currentCampaignLevel
+      minPlayerLevel
+      discordChannel
+      notes
+      profanityLevel
+      lookingFor
     }
   }
 `;
+
 export const UPDATE_GROUP = gql`
   mutation updateGroup(
     $campaignName: String
@@ -217,25 +212,23 @@ export const UPDATE_GROUP = gql`
       profanityLevel: $profanityLevel
       lookingFor: $lookingFor
     ) {
-      group {
-        campaignName
-        gameVersion
-        meetingTime
-        meetingTimezone
-        weekday
-        frequencyTimes
-        frequencyPeriod
-        gameLocationCity
-        gameLocationState
-        vTTUsed
-        currentCampaignLevel
-        minPlayerLevel
-        discordChannel
-        notes
-        profanityLevel
-        characters
-        lookingFor
-      }
+      campaignName
+      gameVersion
+      meetingTime
+      meetingTimezone
+      weekday
+      frequencyTimes
+      frequencyPeriod
+      gameLocationCity
+      gameLocationState
+      vTTUsed
+      currentCampaignLevel
+      minPlayerLevel
+      discordChannel
+      notes
+      profanityLevel
+      characters
+      lookingFor
     }
   }
 `;

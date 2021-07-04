@@ -29,7 +29,7 @@ function GroupList({ group, index }) {
             {group.weekday}
             <span className="font-weight-bold">Meeting Frequency: </span>
             <br />
-            {group.frequencyTime} {group.frequencyPeriod}
+            {group.frequencyTimes} {group.frequencyPeriod}
             <span className="font-weight-bold">Game Location: </span>
             <br />
             {group.gameLocationCity} {group.gameLocationState}
