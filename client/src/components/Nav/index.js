@@ -24,7 +24,7 @@ const Nav = () => {
             ></img>
           </Link>
         </div>
-        <Dropdown>
+        {state.currentUserName ? (
           <DropdownButton
             id="user dropdown"
             menuAlign="right"
@@ -41,8 +41,9 @@ const Nav = () => {
               Logout
             </Dropdown.Item>
           </DropdownButton>
-        </Dropdown>
-        {/* <div className="h3">Welcome, {state.currentUserName}</div> */}
+        ) : (
+          "Welcome!"
+        )}
       </div>
     </nav>
   );
