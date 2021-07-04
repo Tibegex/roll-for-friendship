@@ -25,8 +25,8 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    users: async () => {
-      return User.find().populate("characters").populate("groups");
+    users: async (parent, args) => {
+      return User.find(args).populate("characters").populate("groups");
     },
 
     characters: async (parent, args) => {

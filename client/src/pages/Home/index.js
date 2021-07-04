@@ -1,6 +1,5 @@
 import React from "react";
 
-import { useQuery } from "@apollo/client";
 import {
   Container,
   Row,
@@ -11,10 +10,11 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
+import "./homeStyle.css";
 
+import { useQuery } from "@apollo/client";
 import { GET_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
-import "./homeStyle.css";
 
 import LoginForm from "../../components/LoginForm";
 import SignUpForm from "../../components/SignUpForm";
@@ -24,7 +24,7 @@ import GroupList from "../../components/GroupList";
 import AddGroupForm from "../../components/AddGroupForm";
 
 const Home = () => {
-  const { data, loading, error } = useQuery(GET_ME);
+  const { data } = useQuery(GET_ME);
 
   const user = data?.me || {};
   const characterList = user.characters || [];
@@ -92,7 +92,7 @@ const Home = () => {
           <Accordion>
             {groupList.length > 0
               ? groupList.map((group, index) => (
-                  <GroupList character={group} index={index} key={index} />
+                  <GroupList group={group} index={index} key={index} />
                 ))
               : null}
             <Card key="addGroup">

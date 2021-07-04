@@ -2,31 +2,37 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Form, Button } from "react-bootstrap";
 import { useStoreContext } from "../../utils/GlobalState";
-import { ADD_CHARACTER, ADD_GROUP } from "../../utils/mutations";
-// import Auth from "../../utils/auth";
+import { ADD_GROUP } from "../../utils/mutations";
 
 const AddGroupForm = ({ index }) => {
-  const [state, dispatch] = useStoreContext();
+  const [state] = useStoreContext();
   const { classList, raceList, roleList, stateList } = state;
 
   const [formState, setFormState] = useState({
-    characterName: "",
-    class: "",
-    race: "",
-    playerLevel: "",
-    backstory: "",
-    level: "",
-    role: "",
+    campaignName: "",
+    gameVersion: "",
+    meetingTime: "",
+    meetingTimezone: "",
+    weekday: "",
+    frequencyTimes: 0,
+    frequencyPeriod: "",
+    gameLocationCity: "",
+    gameLocationState: "",
+    vTTUsed: "",
+    currentCampaignLevel: 0,
+    minPlayerLevel: "",
+    discordChannel: "",
     notes: "",
+    profanityLevel: "",
+    lookingFor: "",
   });
 
   const [addGroup] = useMutation(ADD_GROUP);
 
   const handleSubmit = async (event) => {
-    event.prevent.default();
+    event.preventDefault();
 
-    console.log({ ...formState });
-    addGroup({ ...formState });
+    const group = await addGroup({ variables: { ...formState } });
   };
 
   // set up the controls to handle the state of the fields in the form (controlled form)
@@ -40,7 +46,6 @@ const AddGroupForm = ({ index }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      {console.log(classList, raceList, roleList)}
       <Form.Group controlId="campaignName">
         <Form.Label>Enter Campaign name:</Form.Label>
         <Form.Control
@@ -88,12 +93,12 @@ const AddGroupForm = ({ index }) => {
           onChange={handleChange}
         />
       </Form.Group>
-      <Form.Group controlId="frequencyTime">
+      <Form.Group controlId="frequencyTimes">
         <Form.Label>Enter meeting frequency:</Form.Label>
         <Form.Control
           type="text"
           placeholder="Meeting Frequency"
-          name="frequencyTime"
+          name="frequencyTimes"
           onChange={handleChange}
         />
       </Form.Group>
@@ -185,7 +190,6 @@ const AddGroupForm = ({ index }) => {
           onChange={handleChange}
         />
       </Form.Group>
-
       <Button variant="primary" type="submit">
         Submit
       </Button>
