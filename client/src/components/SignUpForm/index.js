@@ -7,7 +7,7 @@ import Auth from "../../utils/auth";
 import "../../pages/Home/index";
 
 const SignUpForm = () => {
-  const [state, dispatch] = useStoreContext();
+  const [state] = useStoreContext();
   const { playerLevels, stateList } = state;
 
   // local state variables
