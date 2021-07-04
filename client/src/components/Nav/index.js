@@ -20,7 +20,7 @@ const Nav = () => {
             ></img>
           </Link>
         </div>
-        <div className="h3">{state.currentUserName}</div>
+        <div className="h3">Welcome, {state.currentUserName}</div>
       </div>
     </nav>
   );

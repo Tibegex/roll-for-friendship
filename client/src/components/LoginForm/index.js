@@ -31,14 +31,6 @@ const LoginForm = () => {
       // set the token in storage for session management
       const token = mutationResponse.data.login.token;
       Auth.login(token);
-
-      // set the user information in storage (just base information - no groups or characters)
-      console.log("realName: ", mutationResponse.data.login.user.realName);
-      dispatch({
-        type: SET_CURRENT_USER,
-        payload: mutationResponse.data.login.user.realName,
-      });
-      console.log("state.currentUserName", state.currentUserName);
     } catch (e) {
       console.log(e);
     }
