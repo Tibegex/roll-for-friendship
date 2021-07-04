@@ -24,7 +24,7 @@ import GroupList from "../../components/GroupList";
 import AddGroupForm from "../../components/AddGroupForm";
 
 const Home = () => {
-  const { data, loading, error } = useQuery(GET_ME);
+  const { data } = useQuery(GET_ME);
 
   const user = data?.me || {};
   const characterList = user.characters || [];
