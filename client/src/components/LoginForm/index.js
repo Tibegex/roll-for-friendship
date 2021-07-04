@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+// Queries/Mutations - GraphQL/Apollo
 import { useMutation } from "@apollo/client";
-import { Form, Button, Alert } from "react-bootstrap";
 import { LOGIN_USER } from "../../utils/mutations";
-import Auth from "../../utils/auth";
+// CSS
+import { Form, Button, Alert } from "react-bootstrap";
 import "../../pages/Home/index";
+// Utility functions
+import Auth from "../../utils/auth";
 
 const LoginForm = () => {
   // local state variable
@@ -19,6 +22,7 @@ const LoginForm = () => {
       const mutationResponse = await login({
         variables: { email: formState.email, password: formState.password },
       });
+      // set the token in storage for session management
       const token = mutationResponse.data.login.token;
       Auth.login(token);
     } catch (e) {
