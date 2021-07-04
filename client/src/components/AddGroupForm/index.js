@@ -33,9 +33,7 @@ const AddGroupForm = ({ index }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log({ ...formState });
     const group = await addGroup({ variables: { ...formState } });
-    console.log(group);
   };
 
   // set up the controls to handle the state of the fields in the form (controlled form)
@@ -96,7 +94,7 @@ const AddGroupForm = ({ index }) => {
           onChange={handleChange}
         />
       </Form.Group>
-      <Form.Group controlId="frequencyTime">
+      <Form.Group controlId="frequencyTimes">
         <Form.Label>Enter meeting frequency:</Form.Label>
         <Form.Control
           type="text"
