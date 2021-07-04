@@ -3,10 +3,9 @@ import { useMutation } from "@apollo/client";
 import { Form, Button } from "react-bootstrap";
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_GROUP } from "../../utils/mutations";
-// import Auth from "../../utils/auth";
 
 const AddGroupForm = ({ index }) => {
-  const [state, dispatch] = useStoreContext();
+  const [state] = useStoreContext();
   const { classList, raceList, roleList, stateList } = state;
 
   const [formState, setFormState] = useState({
