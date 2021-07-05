@@ -26,6 +26,11 @@ const AddGroupForm = ({ index }) => {
     profanityLevel: "",
     lookingFor: "",
   });
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 0);
+  }
 
   const [addGroup] = useMutation(ADD_GROUP);
 
@@ -190,7 +195,7 @@ const AddGroupForm = ({ index }) => {
           onChange={handleChange}
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" onClick={refreshPage}>
         Submit
       </Button>
     </Form>
