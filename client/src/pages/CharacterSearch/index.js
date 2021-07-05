@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 // CSS
-import { Container, Form, Col, Button } from "react-bootstrap";
+import { Container, Form, Col, Button, Row } from "react-bootstrap";
 // Queries/Mutations
 import { useQuery } from "@apollo/client";
 import { GET_CHARACTERS } from "../../utils/queries";
@@ -12,13 +12,15 @@ import { useStoreContext } from "../../utils/GlobalState";
 
 const CharacterSearch = () => {
   const [state] = useStoreContext();
-  const { playerLevels, stateList } = state;
+  const { classList, raceList, roleList, playerLevels, stateList } = state;
 
   // local state variables
   const [formState, setFormState] = useState({
-    realName: "",
-    email: "",
-    password: "",
+    characterName: "",
+    classOption: "",
+    race: "",
+    level: 1,
+    role: "",
     playerLevel: "",
     city: "",
     state: "",
@@ -46,7 +48,7 @@ const CharacterSearch = () => {
         <Form onSubmit={handleFormSubmit}>
           <header className="h2">Search Characters:</header>
 
-          <Form.Row>
+          <Form.Group as={Row} controlId="characterName">
             <Form.Label column="lg" lg={2}>
               Character Name
             </Form.Label>
@@ -55,47 +57,87 @@ const CharacterSearch = () => {
                 size="lg"
                 type="text"
                 placeholder="Character Name"
+                name="characterName"
+                onChange={handleChange}
               />
             </Col>
-          </Form.Row>
+          </Form.Group>
           <br />
-          <Form.Row>
+
+          <Form.Group as={Row} controlId="classOption">
             <Form.Label column="lg" lg={2}>
               Class
             </Form.Label>
             <Col>
-              <Form.Control size="lg" type="text" placeholder="Class" />
+              <Form.Control
+                as="select"
+                name="classOption"
+                onChange={handleChange}
+              >
+                {classList.map((classOption, index) => (
+                  <option value={classOption} key={index}>
+                    {classOption}
+                  </option>
+                ))}
+              </Form.Control>
             </Col>
-          </Form.Row>
+          </Form.Group>
           <br />
-          <Form.Row>
+
+          <Form.Group as={Row} controlId="race">
             <Form.Label column="lg" lg={2}>
               Race
             </Form.Label>
             <Col>
-              <Form.Control size="lg" type="text" placeholder="Race" />
+              <Form.Control as="select" name="race" onChange={handleChange}>
+                {raceList.map((race, index) => (
+                  <option value={race} key={index}>
+                    {race}
+                  </option>
+                ))}
+              </Form.Control>
             </Col>
-          </Form.Row>
+          </Form.Group>
           <br />
-          <Form.Row>
+
+          <Form.Group as={Row} controlId="level">
             <Form.Label column="lg" lg={2}>
               Level
             </Form.Label>
             <Col>
-              <Form.Control size="lg" type="text" placeholder="level" />
+              <Form.Control
+                type="number"
+                min="0"
+                placeholder="1"
+                name="level"
+                onChange={handleChange}
+              />
             </Col>
-          </Form.Row>
+          </Form.Group>
           <br />
-          <Form.Row>
+
+          <Form.Group as={Row} controlId="role">
             <Form.Label column="lg" lg={2}>
               Role
             </Form.Label>
             <Col>
-              <Form.Control size="lg" type="text" placeholder="role" />
+              <Form.Control
+                as="select"
+                placeholder="Role"
+                name="role"
+                onChange={handleChange}
+              >
+                {roleList.map((role, index) => (
+                  <option value={role} key={index}>
+                    {role}
+                  </option>
+                ))}
+              </Form.Control>
             </Col>
-          </Form.Row>
+          </Form.Group>
           <br />
-          <Form.Row controlId="playerLevel">
+
+          <Form.Group as={Row} controlId="playerLevel">
             <Form.Label column="lg" lg={2} className="formFont">
               Player's level:
             </Form.Label>
@@ -113,49 +155,63 @@ const CharacterSearch = () => {
                 ))}
               </Form.Control>
             </Col>
-          </Form.Row>
+          </Form.Group>
           <br />
 
-          <Form.Row controlId="remoteOnlyCheckbox">
+          <Form.Group as={Row} controlId="remoteOnlyCheckbox">
             <Form.Check
               className="formFont"
               type="checkbox"
-              label="I only want to play via remote"
+              label="Include remote players"
               value={remoteOnlyChecked}
               onChange={() => {
                 setRemoteOnlyChecked(!remoteOnlyChecked);
               }}
             />
-          </Form.Row>
+          </Form.Group>
 
           {remoteOnlyChecked ? null : (
-            <>
-              <Form.Row controlId="city">
-                <Form.Label className="formFont">City</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="City"
-                  name="city"
-                  onChange={handleChange}
-                />
-              </Form.Row>
+            <Row>
+              <Form.Group as={Col} controlId="city">
+                <Row>
+                  <Form.Label column="lg" lg={2} className="formFont">
+                    City
+                  </Form.Label>
+                  <Col>
+                    <Form.Control
+                      type="text"
+                      size="lg"
+                      placeholder="City"
+                      name="city"
+                      onChange={handleChange}
+                    />
+                  </Col>
+                </Row>
+              </Form.Group>
 
-              <Form.Row controlId="state">
-                <Form.Label className="formFont">State</Form.Label>
-                <Form.Control
-                  as="select"
-                  placeholder="state"
-                  name="state"
-                  onChange={handleChange}
-                >
-                  {stateList.map((option) => (
-                    <option value={option.abrv} key={option.abrv}>
-                      {option.state}
-                    </option>
-                  ))}
-                </Form.Control>
-              </Form.Row>
-            </>
+              <Form.Group as={Col} controlId="state">
+                <Row>
+                  <Form.Label column="lg" lg={2} className="formFont">
+                    State
+                  </Form.Label>
+                  <Col>
+                    <Form.Control
+                      as="select"
+                      size="lg"
+                      placeholder="state"
+                      name="state"
+                      onChange={handleChange}
+                    >
+                      {stateList.map((option) => (
+                        <option value={option.abrv} key={option.abrv}>
+                          {option.state}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  </Col>
+                </Row>
+              </Form.Group>
+            </Row>
           )}
           <br />
           <Button variant="secondary" size="lg" block>
