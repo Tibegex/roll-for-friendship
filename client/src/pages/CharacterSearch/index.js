@@ -33,7 +33,9 @@ const CharacterSearch = () => {
     variables: { ...formState },
   });
 
-  const user = data?.search_Characters || {};
+  console.log(data);
+
+  const user = data?.user_characters || {};
   const characterList = user.characters || [];
 
   // const handleFormSubmit = async (event) => {
@@ -46,9 +48,12 @@ const CharacterSearch = () => {
   // set up the controls to handle the state of the fields in the form (controlled form)
   const handleChange = (event) => {
     const { name, value } = event.target;
+
+    let newValue = name === "level" ? parseInt(value) : value;
+
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: newValue,
     });
   };
 
@@ -58,6 +63,7 @@ const CharacterSearch = () => {
         <Redirect to="/" />
       ) : (
         <Form>
+          {console.log(user)}
           <header className="h2">Search Characters:</header>
 
           <Form.Group as={Row} controlId="characterName">

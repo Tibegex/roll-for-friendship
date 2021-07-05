@@ -46,15 +46,18 @@ const resolvers = {
           } else {
             characterFilter[key] = args[key];
           }
-          console.log("playerFilter:", playerFilter);
-          console.log("characterFilter:", characterFilter);
         }
       }
+      console.log("playerFilter:", playerFilter);
+      console.log("characterFilter:", characterFilter);
 
-      return User.find(playerFilter).populate({
-        path: characters,
-        match: { characterFilter },
-      });
+      const users = await User.find(playerFilter).populate("characters");
+      // .populate({
+      //   path: characters,
+      //   match: { characterFilter },
+      // });
+      console.log("Users:", users);
+      return users;
     },
 
     groups: async (parent, args) => {
