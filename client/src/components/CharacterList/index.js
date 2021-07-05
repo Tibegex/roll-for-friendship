@@ -5,7 +5,12 @@ import { useMutation } from "@apollo/client";
 
 function CharacterList({ character, index }) {
   const [deleteCharacter] = useMutation(DELETE_CHARACTER);
-
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 0);
+    console.log("page to reload");
+  }
   const handleDeleteCharacter = async (character) => {
     console.log("character:", character);
     try {
@@ -15,6 +20,7 @@ function CharacterList({ character, index }) {
     } catch (err) {
       console.error(err);
     }
+    refreshPage();
   };
   return (
     <>
