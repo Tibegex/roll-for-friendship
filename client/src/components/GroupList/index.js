@@ -5,7 +5,11 @@ import { useMutation } from "@apollo/client";
 
 function GroupList({ group, index }) {
   const [deleteGroup] = useMutation(DELETE_GROUP);
-
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 0);
+  }
   const handleDeleteGroup = async (group) => {
     console.log("group:", group);
     try {
@@ -15,6 +19,7 @@ function GroupList({ group, index }) {
     } catch (err) {
       console.error(err);
     }
+    refreshPage();
   };
   return (
     <>
@@ -35,39 +40,39 @@ function GroupList({ group, index }) {
             {group.meetingTime}
             <br />
             <span className="font-weight-bold">Meeting Time Zone: </span>
-            <br />
             {group.meetingTimezone}
             <br />
             <span className="font-weight-bold">Weekday: </span>
-            <br />
             {group.weekday}
+            <br />
             <span className="font-weight-bold">Meeting Frequency: </span>
-            <br />
             {group.frequencyTimes} {group.frequencyPeriod}
+            <br />
             <span className="font-weight-bold">Game Location: </span>
-            <br />
             {group.gameLocationCity} {group.gameLocationState}
+            <br />
             <span className="font-weight-bold">vTT: </span>
-            <br />
             {group.vTTUsed}
+            <br />
             <span className="font-weight-bold">Current Campaign Level: </span>
-            <br />
             {group.currentCampaignLevel}
+            <br />
             <span className="font-weight-bold">Minimum Player Level: </span>
-            <br />
             {group.minPlayerLevel}
+            <br />
             <span className="font-weight-bold">Discord: </span>
-            <br />
             {group.discordChannel}
+            <br />
             <span className="font-weight-bold">Notes: </span>
-            <br />
             {group.notes}
-            <span className="font-weight-bold">Profanity Level: </span>
             <br />
+            <span className="font-weight-bold">Profanity Level: </span>
             {group.profanityLevel}
+            <br />
             <span className="font-weight-bold">Looking For: </span>
             <br />
             {group.lookingFor}
+            <br />
             <button
               className="btn btn-sm btn-danger ml-auto"
               onClick={() => handleDeleteGroup(group._id)}
