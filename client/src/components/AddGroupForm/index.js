@@ -14,12 +14,12 @@ const AddGroupForm = ({ index }) => {
     meetingTime: "",
     meetingTimezone: "",
     weekday: "",
-    frequencyTimes: 0,
+    frequencyTimes: 1,
     frequencyPeriod: "",
     gameLocationCity: "",
     gameLocationState: "",
     vTTUsed: "",
-    currentCampaignLevel: 0,
+    currentCampaignLevel: 1,
     minPlayerLevel: "",
     discordChannel: "",
     notes: "",
@@ -36,7 +36,7 @@ const AddGroupForm = ({ index }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(formState);
     const group = await addGroup({ variables: { ...formState } });
   };
 
@@ -101,7 +101,7 @@ const AddGroupForm = ({ index }) => {
       <Form.Group controlId="frequencyTimes">
         <Form.Label>Enter meeting frequency:</Form.Label>
         <Form.Control
-          type="text"
+          type="integer"
           placeholder="Meeting Frequency"
           name="frequencyTimes"
           onChange={handleChange}
@@ -143,7 +143,7 @@ const AddGroupForm = ({ index }) => {
       <Form.Group controlId="currentCampaignLevel">
         <Form.Label>Enter Current Campaign Level:</Form.Label>
         <Form.Control
-          type="text"
+          type="integer"
           placeholder="Current Campaign Level"
           name="currentCampaignLevel"
           onChange={handleChange}

@@ -5,7 +5,11 @@ import { useMutation } from "@apollo/client";
 
 function GroupList({ group, index }) {
   const [deleteGroup] = useMutation(DELETE_GROUP);
-
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 0);
+  }
   const handleDeleteGroup = async (group) => {
     console.log("group:", group);
     try {
@@ -15,6 +19,7 @@ function GroupList({ group, index }) {
     } catch (err) {
       console.error(err);
     }
+    refreshPage();
   };
   return (
     <>
