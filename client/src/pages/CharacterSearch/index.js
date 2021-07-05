@@ -1,35 +1,47 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 // CSS
-import { Container, Form, Col, Button, Row } from "react-bootstrap";
+import { Container, Form, Col, Button, Row, Accordion } from "react-bootstrap";
 // Queries/Mutations
 import { useQuery } from "@apollo/client";
-import { GET_CHARACTERS } from "../../utils/queries";
+import { SEARCH_CHARACTERS } from "../../utils/queries";
 import Auth from "../../utils/auth";
 
 // State Store
 import { useStoreContext } from "../../utils/GlobalState";
 
+// The component
 const CharacterSearch = () => {
   const [state] = useStoreContext();
   const { classList, raceList, roleList, playerLevels, stateList } = state;
 
   // local state variables
   const [formState, setFormState] = useState({
-    characterName: "",
-    classOption: "",
-    race: "",
-    level: 1,
-    role: "",
     playerLevel: "",
     city: "",
     state: "",
+    characterName: "",
+    class: "",
+    race: "",
+    level: 1,
+    role: "",
   });
   const [remoteOnlyChecked, setRemoteOnlyChecked] = useState(false);
 
-  const handleFormSubmit = async (event) => {
-    // do something here...
-  };
+  // setup query
+  const { loading, data } = useQuery(SEARCH_CHARACTERS, {
+    variables: { ...formState },
+  });
+
+  const user = data?.search_Characters || {};
+  const characterList = user.characters || [];
+
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   // do something here...
+  //   console.log(formState);
+  // };
 
   // set up the controls to handle the state of the fields in the form (controlled form)
   const handleChange = (event) => {
@@ -45,7 +57,7 @@ const CharacterSearch = () => {
       {!Auth.loggedIn() ? (
         <Redirect to="/" />
       ) : (
-        <Form onSubmit={handleFormSubmit}>
+        <Form>
           <header className="h2">Search Characters:</header>
 
           <Form.Group as={Row} controlId="characterName">
@@ -69,11 +81,7 @@ const CharacterSearch = () => {
               Class
             </Form.Label>
             <Col>
-              <Form.Control
-                as="select"
-                name="classOption"
-                onChange={handleChange}
-              >
+              <Form.Control as="select" name="class" onChange={handleChange}>
                 {classList.map((classOption, index) => (
                   <option value={classOption} key={index}>
                     {classOption}
@@ -214,10 +222,22 @@ const CharacterSearch = () => {
             </Row>
           )}
           <br />
-          <Button variant="secondary" size="lg" block>
+          {/* <Button type="submit" variant="secondary" size="lg" block>
             Search
-          </Button>
+          </Button> */}
         </Form>
+      )}
+      {characterList.length === 0 ? null : (
+        <>
+          {loading ? (
+            <p className="formFont">loading</p>
+          ) : (
+            <>
+              <p className="formFont">There is data!</p>
+              <Accordion></Accordion>
+            </>
+          )}
+        </>
       )}
     </Container>
   );

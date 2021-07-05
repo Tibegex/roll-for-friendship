@@ -157,7 +157,6 @@ export const GET_GROUPS = gql`
 
 export const SEARCH_CHARACTERS = gql`
   query search_Characters(
-    $realName: String
     $playerLevel: String
     $city: String
     $state: String
@@ -168,7 +167,6 @@ export const SEARCH_CHARACTERS = gql`
     $role: String
   ) {
     user_characters(
-      realName: $realName
       playerLevel: $playerLevel
       city: $city
       state: $state

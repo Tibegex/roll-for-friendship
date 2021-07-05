@@ -35,7 +35,26 @@ const resolvers = {
     },
 
     user_characters: async (parent, args) => {
-      console.log("user_characters:", args);
+      console.log("resolver: user_characters:", args);
+      const playerFilter = {};
+      const characterFilter = {};
+
+      for (const key in args) {
+        if (args[key] !== "") {
+          if (key === "playerLevel" || key === "city" || key === "state") {
+            playerFilter[key] = args[key];
+          } else {
+            characterFilter[key] = args[key];
+          }
+          console.log("playerFilter:", playerFilter);
+          console.log("characterFilter:", characterFilter);
+        }
+      }
+
+      return User.find(playerFilter).populate({
+        path: characters,
+        match: { characterFilter },
+      });
     },
 
     groups: async (parent, args) => {

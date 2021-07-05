@@ -66,7 +66,6 @@ const typeDefs = gql`
     ): [Character]
 
     user_characters(
-      realName: String
       playerLevel: String
       city: String
       state: String
