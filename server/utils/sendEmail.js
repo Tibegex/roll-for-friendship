@@ -22,7 +22,7 @@ module.exports = {
     });
 
     const mailOptions = {
-      from: "roll.for.friendship2021",
+      from: process.env.EMAIL,
       to: userEmail,
       subject: "Account Creation",
       text: "You have successfully created a an account on Roll for Friendship. Thanks for checking us out!",
