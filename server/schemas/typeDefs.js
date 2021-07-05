@@ -56,6 +56,18 @@ const typeDefs = gql`
     error: String
   }
 
+  type userSearchPayload {
+    _id: ID!
+    realName: String!
+    email: String!
+    password: String!
+    playerLevel: String
+    city: String
+    state: String
+    groups: [Group]
+    characters: Character
+  }
+
   type Query {
     user(realName: String): User
     users: [User]
@@ -79,7 +91,7 @@ const typeDefs = gql`
       race: String
       level: Int
       role: String
-    ): [User]
+    ): [userSearchPayload]
 
     groups(
       campaignName: String

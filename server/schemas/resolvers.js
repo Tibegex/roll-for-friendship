@@ -35,9 +35,10 @@ const resolvers = {
     },
 
     user_characters: async (parent, args) => {
-      console.log("\n\nresolver: user_characters:", args);
-      const playerFilter = { characters: {} };
+      const playerFilter = {};
       const characterFilter = {};
+      const returnData = [];
+
       try {
         // set up the filters based on the args passed in
         for (const key in args) {
@@ -45,42 +46,38 @@ const resolvers = {
             if (key === "playerLevel" || key === "city" || key === "state") {
               playerFilter[key] = args[key];
             } else {
-              playerFilter.characters[key] = args[key];
-              // characterFilter[key] = args[key];
+              characterFilter[key] = args[key];
             }
           }
         }
-        console.log("playerFilter:", playerFilter);
-        console.log("characterFilter:", characterFilter);
 
-        // do the search
-        // db.parents.aggregate([
-        //   {
-        //     $match: { "children.age": { $gte: 18 } },
-        //   },
-        //   {
-        //     $unwind: "$children",
-        //   },
-        //   {
-        //     $match: { "children.age": { $gte: 18 } },
-        //   },
-        //   {
-        //     $project: {
-        //       name: "$children.name",
-        //       age: "$children.age",
-        //     },
-        //   },
-        // ]);
         const users = await User.aggregate([
           { $match: playerFilter },
           { $unwind: "$characters" },
+          // this would never populate the value - always returned [] -- Tried several things beyond: https://stackoverflow.com/questions/37705517/mongodb-lookup-not-working-with-id
+          // {
+          //   $lookup: {
+          //     from: "Character",
+          //     localField: "characters",
+          //     foreignField: "_id",
+          //     as: "character",
+          //   },
+          // },
         ]);
-        // .populate({
-        //   path: characters,
-        //   match: { characterFilter },
-        // });
-        console.log("Users:", users);
-        return users;
+        const characters = await Character.find(characterFilter);
+
+        users.forEach((line) => {
+          const index = characters.findIndex(
+            (char) => String(char._id) == line.characters
+          );
+          if (index >= 0) {
+            const newChar = { ...line };
+            newChar.characters = characters[index];
+            returnData.push(newChar);
+          }
+        });
+
+        return returnData;
       } catch (err) {
         console.log(err);
       }

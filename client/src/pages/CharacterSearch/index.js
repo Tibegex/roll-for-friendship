@@ -41,16 +41,10 @@ const CharacterSearch = () => {
     variables: { ...formState },
   });
 
+  console.log("data:");
   console.log(data);
 
   const users = data?.user_characters || [];
-
-  // const handleFormSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   // do something here...
-  //   console.log(formState);
-  // };
 
   // set up the controls to handle the state of the fields in the form (controlled form)
   const handleChange = (event) => {
