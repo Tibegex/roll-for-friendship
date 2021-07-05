@@ -1,14 +1,15 @@
 import React from "react";
 import { Accordion, Card, Button } from "react-bootstrap";
 import { DELETE_CHARACTER } from "../../utils/mutations";
+import { useMutation } from "@apollo/client";
 
 function CharacterList({ character, index }) {
   const [deleteCharacter] = useMutation(DELETE_CHARACTER);
 
-  const handleDeleteCharacter = async (skill) => {
+  const handleDeleteCharacter = async (character) => {
     try {
       const { data } = await deleteCharacter({
-        variables: { skill },
+        variables: { character },
       });
     } catch (err) {
       console.error(err);
