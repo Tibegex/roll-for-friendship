@@ -46,6 +46,12 @@ const CharacterSearch = () => {
 
   const users = data?.user_characters || [];
 
+  // handle inviting player to game
+  const invitePlayer = (id) => {
+    // use mutation to send email
+    console.log(`invitePlayer(${id})`);
+  };
+
   // set up the controls to handle the state of the fields in the form (controlled form)
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -238,10 +244,6 @@ const CharacterSearch = () => {
         <p className="formFont">loading</p>
       ) : (
         <>
-          {/* {console.log(
-            "map: users.characters.lengths",
-            users.map((user) => user.characters.length).reduce((a, b) => a + b)
-          )} */}
           {users.length === 0 ||
           users
             .map((user) => user.characters.length)
@@ -253,7 +255,7 @@ const CharacterSearch = () => {
               <Accordion>
                 {users.map((user, index) => (
                   <Card key={index}>
-                    {console.log("Accordian: user:", user)}
+                    {console.log("Accordion: user:", user)}
                     <Card.Header>
                       <Accordion.Toggle
                         as={Button}
@@ -262,12 +264,16 @@ const CharacterSearch = () => {
                       >
                         <Row className="justify-content-between">
                           {user.characters.characterName}
-                          <Button>Add Character</Button>
                         </Row>
                       </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey={`"${index}"`}>
-                      <Card.Body>Character details</Card.Body>
+                      <Card.Body>
+                        Character details
+                        <Button onClick={() => invitePlayer(user._id)}>
+                          Invite Character to Game
+                        </Button>
+                      </Card.Body>
                     </Accordion.Collapse>
                   </Card>
                 ))}
