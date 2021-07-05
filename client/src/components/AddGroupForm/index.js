@@ -101,7 +101,8 @@ const AddGroupForm = ({ index }) => {
       <Form.Group controlId="frequencyTimes">
         <Form.Label>Enter meeting frequency:</Form.Label>
         <Form.Control
-          type="integer"
+          type="number"
+          min="0"
           placeholder="Meeting Frequency"
           name="frequencyTimes"
           onChange={handleChange}
@@ -143,7 +144,8 @@ const AddGroupForm = ({ index }) => {
       <Form.Group controlId="currentCampaignLevel">
         <Form.Label>Enter Current Campaign Level:</Form.Label>
         <Form.Control
-          type="integer"
+          type="number"
+          min="0"
           placeholder="Current Campaign Level"
           name="currentCampaignLevel"
           onChange={handleChange}
