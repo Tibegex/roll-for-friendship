@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 // CSS
 import {
   Container,
@@ -76,6 +77,9 @@ const Home = () => {
         </Row>
       ) : (
         <>
+          <NavLink to="/UserSearch">
+            <Button>Search for Users</Button>
+          </NavLink>
           <header className="h2">Your Characters:</header>
           <Accordion>
             {characterList.length > 0
