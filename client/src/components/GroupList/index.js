@@ -1,7 +1,21 @@
 import React from "react";
 import { Accordion, Card, Button } from "react-bootstrap";
+import { DELETE_GROUP } from "../../utils/mutations";
+import { useMutation } from "@apollo/client";
 
 function GroupList({ group, index }) {
+  const [deleteGroup] = useMutation(DELETE_GROUP);
+
+  const handleDeleteGroup = async (group) => {
+    console.log("group:", group);
+    try {
+      const { data } = await deleteGroup({
+        variables: { groupId: group },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <>
       <Card>
@@ -54,6 +68,12 @@ function GroupList({ group, index }) {
             <span className="font-weight-bold">Looking For: </span>
             <br />
             {group.lookingFor}
+            <button
+              className="btn btn-sm btn-danger ml-auto"
+              onClick={() => handleDeleteGroup(group._id)}
+            >
+              DELETE GROUP
+            </button>
           </Card.Body>
         </Accordion.Collapse>
       </Card>

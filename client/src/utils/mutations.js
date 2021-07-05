@@ -229,25 +229,8 @@ export const UPDATE_GROUP = gql`
 export const DELETE_GROUP = gql`
   mutation deleteGroup($groupId: ID!) {
     deleteGroup(groupId: $groupId) {
-      group {
-        campaignName
-        gameVersion
-        meetingTime
-        meetingTimezone
-        weekday
-        frequencyTimes
-        frequencyPeriod
-        gameLocationCity
-        gameLocationState
-        vTTUsed
-        currentCampaignLevel
-        minPlayerLevel
-        discordChannel
-        notes
-        profanityLevel
-        characters
-        lookingFor
-      }
+      status
+      error
     }
   }
 `;

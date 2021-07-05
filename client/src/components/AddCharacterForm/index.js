@@ -10,10 +10,10 @@ const AddCharacterForm = ({ index }) => {
 
   const [formState, setFormState] = useState({
     characterName: "",
-    class: "",
-    race: "",
+    class: classList[0],
+    race: raceList[0],
     level: 1,
-    role: "",
+    role: roleList[0],
     backstory: "",
     notes: "",
     classOther: "",
@@ -38,6 +38,7 @@ const AddCharacterForm = ({ index }) => {
     variables.backstory = formState.backstory;
     variables.notes = formState.notes;
 
+    console.log("variables:", variables);
     const character = await addCharacter({ variables: { ...variables } });
     console.log(character);
   };
@@ -66,7 +67,7 @@ const AddCharacterForm = ({ index }) => {
 
       <Form.Group controlId="class">
         <Form.Label>Enter your Character's class:</Form.Label>
-        <Form.Control as="select" name="class" onChange={handleChange}>
+        <Form.Control as="select" required name="class" onChange={handleChange}>
           {classList.map((classOption, index) => (
             <option value={classOption} key={index}>
               {classOption}
@@ -84,6 +85,7 @@ const AddCharacterForm = ({ index }) => {
           </Form.Label>
           <Form.Control
             type="text"
+            required
             placeholder="Other..."
             name="classOther"
             onChange={handleChange}

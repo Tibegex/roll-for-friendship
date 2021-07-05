@@ -184,7 +184,7 @@ const typeDefs = gql`
       lookingFor: [String]
     ): Group
 
-    deleteGroup(groupId: ID!): Group
+    deleteGroup(groupId: ID!): DeletePayload
   }
 `;
 
