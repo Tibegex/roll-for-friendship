@@ -85,37 +85,6 @@ const typeDefs = gql`
     ): [Group]
   }
 
-  input characterInput {
-    characterName: String!
-    class: String!
-    race: String
-    backstory: String
-    level: Int
-    role: String
-    notes: String
-    user: String
-  }
-
-  input groupInput {
-    campaignName: String!
-    gameVersion: String
-    meetingTime: String
-    meetingTimezone: String
-    weekday: String
-    frequencyTimes: Int
-    frequencyPeriod: String
-    gameLocationCity: String
-    gameLocationState: String
-    vTTUsed: String
-    currentCampaignLevel: Int
-    minPlayerLevel: String
-    discordChannel: String
-    notes: String
-    profanityLevel: String
-    characters: [String]
-    lookingFor: [String]
-  }
-
   type Mutation {
     addUser(
       realName: String!
@@ -168,8 +137,8 @@ const typeDefs = gql`
     ): Group
 
     updateCharacter(
-      characterName: String!
-      class: String!
+      characterName: String
+      class: String
       race: String
       backstory: String
       level: Int
@@ -180,7 +149,7 @@ const typeDefs = gql`
     deleteCharacter(characterId: ID!): Character
 
     updateGroup(
-      campaignName: String!
+      campaignName: String
       gameVersion: String
       meetingTime: String
       meetingTimezone: String
