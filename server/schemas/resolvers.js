@@ -35,29 +35,55 @@ const resolvers = {
     },
 
     user_characters: async (parent, args) => {
-      console.log("resolver: user_characters:", args);
-      const playerFilter = {};
+      console.log("\n\nresolver: user_characters:", args);
+      const playerFilter = { characters: {} };
       const characterFilter = {};
-
-      for (const key in args) {
-        if (args[key] !== "") {
-          if (key === "playerLevel" || key === "city" || key === "state") {
-            playerFilter[key] = args[key];
-          } else {
-            characterFilter[key] = args[key];
+      try {
+        // set up the filters based on the args passed in
+        for (const key in args) {
+          if (args[key] !== "") {
+            if (key === "playerLevel" || key === "city" || key === "state") {
+              playerFilter[key] = args[key];
+            } else {
+              playerFilter.characters[key] = args[key];
+              // characterFilter[key] = args[key];
+            }
           }
         }
-      }
-      console.log("playerFilter:", playerFilter);
-      console.log("characterFilter:", characterFilter);
+        console.log("playerFilter:", playerFilter);
+        console.log("characterFilter:", characterFilter);
 
-      const users = await User.find(playerFilter).populate("characters");
-      // .populate({
-      //   path: characters,
-      //   match: { characterFilter },
-      // });
-      console.log("Users:", users);
-      return users;
+        // do the search
+        // db.parents.aggregate([
+        //   {
+        //     $match: { "children.age": { $gte: 18 } },
+        //   },
+        //   {
+        //     $unwind: "$children",
+        //   },
+        //   {
+        //     $match: { "children.age": { $gte: 18 } },
+        //   },
+        //   {
+        //     $project: {
+        //       name: "$children.name",
+        //       age: "$children.age",
+        //     },
+        //   },
+        // ]);
+        const users = await User.aggregate([
+          { $match: playerFilter },
+          { $unwind: "$characters" },
+        ]);
+        // .populate({
+        //   path: characters,
+        //   match: { characterFilter },
+        // });
+        console.log("Users:", users);
+        return users;
+      } catch (err) {
+        console.log(err);
+      }
     },
 
     groups: async (parent, args) => {
