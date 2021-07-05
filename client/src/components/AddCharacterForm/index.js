@@ -25,7 +25,6 @@ const AddCharacterForm = ({ index }) => {
     setTimeout(() => {
       window.location.reload(false);
     }, 0);
-    console.log("page to reload");
   }
 
   const [addCharacter] = useMutation(ADD_CHARACTER);

@@ -9,7 +9,6 @@ function CharacterList({ character, index }) {
     setTimeout(() => {
       window.location.reload(false);
     }, 0);
-    console.log("page to reload");
   }
   const handleDeleteCharacter = async (character) => {
     console.log("character:", character);
