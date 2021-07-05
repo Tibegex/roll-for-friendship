@@ -35,29 +35,52 @@ const resolvers = {
     },
 
     user_characters: async (parent, args) => {
-      console.log("resolver: user_characters:", args);
       const playerFilter = {};
       const characterFilter = {};
+      const returnData = [];
 
-      for (const key in args) {
-        if (args[key] !== "") {
-          if (key === "playerLevel" || key === "city" || key === "state") {
-            playerFilter[key] = args[key];
-          } else {
-            characterFilter[key] = args[key];
+      try {
+        // set up the filters based on the args passed in
+        for (const key in args) {
+          if (args[key] !== "") {
+            if (key === "playerLevel" || key === "city" || key === "state") {
+              playerFilter[key] = args[key];
+            } else {
+              characterFilter[key] = args[key];
+            }
           }
         }
-      }
-      console.log("playerFilter:", playerFilter);
-      console.log("characterFilter:", characterFilter);
 
-      const users = await User.find(playerFilter).populate("characters");
-      // .populate({
-      //   path: characters,
-      //   match: { characterFilter },
-      // });
-      console.log("Users:", users);
-      return users;
+        const users = await User.aggregate([
+          { $match: playerFilter },
+          { $unwind: "$characters" },
+          // this would never populate the value - always returned [] -- Tried several things beyond: https://stackoverflow.com/questions/37705517/mongodb-lookup-not-working-with-id
+          // {
+          //   $lookup: {
+          //     from: "Character",
+          //     localField: "characters",
+          //     foreignField: "_id",
+          //     as: "character",
+          //   },
+          // },
+        ]);
+        const characters = await Character.find(characterFilter);
+
+        users.forEach((line) => {
+          const index = characters.findIndex(
+            (char) => String(char._id) == line.characters
+          );
+          if (index >= 0) {
+            const newChar = { ...line };
+            newChar.characters = characters[index];
+            returnData.push(newChar);
+          }
+        });
+
+        return returnData;
+      } catch (err) {
+        console.log(err);
+      }
     },
 
     groups: async (parent, args) => {

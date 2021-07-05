@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 // CSS
-import { Container, Form, Col, Button, Row, Accordion } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Col,
+  Button,
+  Row,
+  Accordion,
+  Card,
+} from "react-bootstrap";
 // Queries/Mutations
 import { useQuery } from "@apollo/client";
 import { SEARCH_CHARACTERS } from "../../utils/queries";
@@ -33,17 +41,10 @@ const CharacterSearch = () => {
     variables: { ...formState },
   });
 
+  console.log("data:");
   console.log(data);
 
-  const user = data?.user_characters || {};
-  const characterList = user.characters || [];
-
-  // const handleFormSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   // do something here...
-  //   console.log(formState);
-  // };
+  const users = data?.user_characters || [];
 
   // set up the controls to handle the state of the fields in the form (controlled form)
   const handleChange = (event) => {
@@ -63,7 +64,7 @@ const CharacterSearch = () => {
         <Redirect to="/" />
       ) : (
         <Form>
-          {console.log(user)}
+          {console.log("users: ", users)}
           <header className="h2">Search Characters:</header>
 
           <Form.Group as={Row} controlId="characterName">
@@ -233,14 +234,44 @@ const CharacterSearch = () => {
           </Button> */}
         </Form>
       )}
-      {characterList.length === 0 ? null : (
+      {loading ? (
+        <p className="formFont">loading</p>
+      ) : (
         <>
-          {loading ? (
-            <p className="formFont">loading</p>
+          {/* {console.log(
+            "map: users.characters.lengths",
+            users.map((user) => user.characters.length).reduce((a, b) => a + b)
+          )} */}
+          {users.length === 0 ||
+          users
+            .map((user) => user.characters.length)
+            .reduce((a, b) => a + b) === 0 ? (
+            <p className="formFont">No characters found matching criteria.</p>
           ) : (
             <>
               <p className="formFont">There is data!</p>
-              <Accordion></Accordion>
+              <Accordion>
+                {users.map((user, index) => (
+                  <Card key={index}>
+                    {console.log("Accordian: user:", user)}
+                    <Card.Header>
+                      <Accordion.Toggle
+                        as={Button}
+                        variant="link"
+                        eventKey={`"${index}"`}
+                      >
+                        <Row className="justify-content-between">
+                          {user.characters.characterName}
+                          <Button>Add Character</Button>
+                        </Row>
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey={`"${index}"`}>
+                      <Card.Body>Character details</Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                ))}
+              </Accordion>
             </>
           )}
         </>
