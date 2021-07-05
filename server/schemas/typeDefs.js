@@ -51,6 +51,11 @@ const typeDefs = gql`
     user: User
   }
 
+  type DeletePayload {
+    status: Boolean
+    error: String
+  }
+
   type Query {
     user(realName: String): User
     users: [User]
@@ -148,8 +153,8 @@ const typeDefs = gql`
     ): Group
 
     updateCharacter(
-      characterName: String!
-      class: String!
+      characterName: String
+      class: String
       race: String
       backstory: String
       level: Int
@@ -157,10 +162,10 @@ const typeDefs = gql`
       notes: String
     ): Character
 
-    deleteCharacter(characterId: ID!): Character
+    deleteCharacter(characterId: ID!): DeletePayload
 
     updateGroup(
-      campaignName: String!
+      campaignName: String
       gameVersion: String
       meetingTime: String
       meetingTimezone: String
@@ -179,7 +184,7 @@ const typeDefs = gql`
       lookingFor: [String]
     ): Group
 
-    deleteGroup(groupId: ID!): Group
+    deleteGroup(groupId: ID!): DeletePayload
   }
 `;
 

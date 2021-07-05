@@ -167,34 +167,40 @@ const resolvers = {
 
     deleteCharacter: async (parent, { characterId }, context) => {
       if (context.user) {
-        const character = await Character.findOneAndDelete({
-          _id: characterId,
-          user: context.user.realName,
-        });
+        try {
+          const character = await Character.findOneAndDelete({
+            _id: characterId,
+          });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { characters: character._id } }
-        );
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $pull: { characters: character._id } }
+          );
 
-        return character;
+          return { status: true, error: "Success" };
+        } catch (error) {
+          return { status: false, error };
+        }
       }
       throw new AuthenticationError("You need to be logged in!");
     },
 
     deleteGroup: async (parent, { groupId }, context) => {
       if (context.user) {
-        const group = await Group.findOneAndDelete({
-          _id: groupId,
-          user: context.user.realName,
-        });
+        try {
+          const group = await Group.findOneAndDelete({
+            _id: groupId,
+          });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { groups: group._id } }
-        );
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $pull: { groups: group._id } }
+          );
 
-        return group;
+          return { status: true, error: "Success" };
+        } catch (error) {
+          return { status: false, error };
+        }
       }
       throw new AuthenticationError("You need to be logged in!");
     },
