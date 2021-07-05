@@ -51,6 +51,11 @@ const typeDefs = gql`
     user: User
   }
 
+  type DeletePayload {
+    status: Boolean
+    error: String
+  }
+
   type Query {
     user(realName: String): User
     users: [User]
@@ -157,7 +162,7 @@ const typeDefs = gql`
       notes: String
     ): Character
 
-    deleteCharacter(characterId: ID!): Character
+    deleteCharacter(characterId: ID!): DeletePayload
 
     updateGroup(
       campaignName: String

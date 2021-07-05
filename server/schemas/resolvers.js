@@ -141,17 +141,20 @@ const resolvers = {
 
     deleteCharacter: async (parent, { characterId }, context) => {
       if (context.user) {
-        const character = await Character.findOneAndDelete({
-          _id: characterId,
-          user: context.user.realName,
-        });
+        try {
+          const character = await Character.findOneAndDelete({
+            _id: characterId,
+          });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { characters: character._id } }
-        );
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $pull: { characters: character._id } }
+          );
 
-        return character;
+          return { status: true, error: "Success" };
+        } catch (error) {
+          return { status: false, error };
+        }
       }
       throw new AuthenticationError("You need to be logged in!");
     },

@@ -7,9 +7,10 @@ function CharacterList({ character, index }) {
   const [deleteCharacter] = useMutation(DELETE_CHARACTER);
 
   const handleDeleteCharacter = async (character) => {
+    console.log("character:", character);
     try {
       const { data } = await deleteCharacter({
-        variables: { character },
+        variables: { characterId: character },
       });
     } catch (err) {
       console.error(err);
@@ -42,9 +43,9 @@ function CharacterList({ character, index }) {
             {character.notes}
             <button
               className="btn btn-sm btn-danger ml-auto"
-              onClick={() => handleDeleteCharacter(character)}
+              onClick={() => handleDeleteCharacter(character._id)}
             >
-              X
+              DELETE CHARACTER
             </button>
           </Card.Body>
         </Accordion.Collapse>

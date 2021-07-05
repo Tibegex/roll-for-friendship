@@ -104,15 +104,8 @@ export const UPDATE_CHARACTER = gql`
 export const DELETE_CHARACTER = gql`
   mutation deleteCharacter($characterId: ID!) {
     deleteCharacter(characterId: $characterId) {
-      character {
-        characterName
-        class
-        race
-        backstory
-        level
-        role
-        notes
-      }
+      status
+      error
     }
   }
 `;
