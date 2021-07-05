@@ -50,6 +50,7 @@ export const GET_ME = gql`
       city
       state
       groups {
+        _id
         campaignName
         gameVersion
         meetingTime
@@ -67,6 +68,7 @@ export const GET_ME = gql`
         profanityLevel
       }
       characters {
+        _id
         characterName
         class
         race

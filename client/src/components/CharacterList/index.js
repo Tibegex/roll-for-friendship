@@ -1,7 +1,21 @@
 import React from "react";
 import { Accordion, Card, Button } from "react-bootstrap";
+import { DELETE_CHARACTER } from "../../utils/mutations";
+import { useMutation } from "@apollo/client";
 
 function CharacterList({ character, index }) {
+  const [deleteCharacter] = useMutation(DELETE_CHARACTER);
+
+  const handleDeleteCharacter = async (character) => {
+    console.log("character:", character);
+    try {
+      const { data } = await deleteCharacter({
+        variables: { characterId: character },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <>
       <Card>
@@ -27,6 +41,12 @@ function CharacterList({ character, index }) {
             <span className="font-weight-bold">Notes: </span>
             <br />
             {character.notes}
+            <button
+              className="btn btn-sm btn-danger ml-auto"
+              onClick={() => handleDeleteCharacter(character._id)}
+            >
+              DELETE CHARACTER
+            </button>
           </Card.Body>
         </Accordion.Collapse>
       </Card>
