@@ -34,6 +34,32 @@ const resolvers = {
       return Character.find(args);
     },
 
+    user_characters: async (parent, args) => {
+      console.log("resolver: user_characters:", args);
+      const playerFilter = {};
+      const characterFilter = {};
+
+      for (const key in args) {
+        if (args[key] !== "") {
+          if (key === "playerLevel" || key === "city" || key === "state") {
+            playerFilter[key] = args[key];
+          } else {
+            characterFilter[key] = args[key];
+          }
+        }
+      }
+      console.log("playerFilter:", playerFilter);
+      console.log("characterFilter:", characterFilter);
+
+      const users = await User.find(playerFilter).populate("characters");
+      // .populate({
+      //   path: characters,
+      //   match: { characterFilter },
+      // });
+      console.log("Users:", users);
+      return users;
+    },
+
     groups: async (parent, args) => {
       return Group.find(args);
     },
