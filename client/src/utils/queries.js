@@ -178,6 +178,7 @@ export const SEARCH_CHARACTERS = gql`
       level: $level
       role: $role
     ) {
+      _id
       playerLevel
       city
       state
