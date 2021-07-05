@@ -2,6 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Group, Character } = require("../models");
 
 const { signToken } = require("../utils/auth");
+const { sendWelcome } = require("../utils/sendEmail");
 
 const resolvers = {
   Query: {
@@ -25,12 +26,38 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    users: async () => {
-      return User.find().populate("characters").populate("groups");
+    users: async (parent, args) => {
+      return User.find(args).populate("characters").populate("groups");
     },
 
     characters: async (parent, args) => {
       return Character.find(args);
+    },
+
+    user_characters: async (parent, args) => {
+      console.log("resolver: user_characters:", args);
+      const playerFilter = {};
+      const characterFilter = {};
+
+      for (const key in args) {
+        if (args[key] !== "") {
+          if (key === "playerLevel" || key === "city" || key === "state") {
+            playerFilter[key] = args[key];
+          } else {
+            characterFilter[key] = args[key];
+          }
+        }
+      }
+      console.log("playerFilter:", playerFilter);
+      console.log("characterFilter:", characterFilter);
+
+      const users = await User.find(playerFilter).populate("characters");
+      // .populate({
+      //   path: characters,
+      //   match: { characterFilter },
+      // });
+      console.log("Users:", users);
+      return users;
     },
 
     groups: async (parent, args) => {
@@ -43,6 +70,7 @@ const resolvers = {
       const user = await User.create(args);
       const token = signToken(user);
 
+      sendWelcome(user.email);
       return { token, user };
     },
 

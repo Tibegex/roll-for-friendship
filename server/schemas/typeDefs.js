@@ -65,6 +65,17 @@ const typeDefs = gql`
       notes: String
     ): [Character]
 
+    user_characters(
+      playerLevel: String
+      city: String
+      state: String
+      characterName: String
+      class: String
+      race: String
+      level: Int
+      role: String
+    ): [User]
+
     groups(
       campaignName: String
       gameVersion: String
@@ -117,7 +128,7 @@ const typeDefs = gql`
     ): Character
 
     addGroup(
-      campaignName: String!
+      campaignName: String
       gameVersion: String
       meetingTime: String
       meetingTimezone: String

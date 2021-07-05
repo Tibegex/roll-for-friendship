@@ -1,5 +1,6 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
+// CSS
 import {
   Container,
   Row,
@@ -11,24 +12,40 @@ import {
   Button,
 } from "react-bootstrap";
 import "./homeStyle.css";
-
+// Queries
 import { useQuery } from "@apollo/client";
 import { GET_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
-
+// Custom Components
 import LoginForm from "../../components/LoginForm";
 import SignUpForm from "../../components/SignUpForm";
 import CharacterList from "../../components/CharacterList";
 import AddCharacterForm from "../../components/AddCharacterForm";
 import GroupList from "../../components/GroupList";
 import AddGroupForm from "../../components/AddGroupForm";
+// State Store
+import { useStoreContext } from "../../utils/GlobalState";
+import { SET_CURRENT_USER } from "../../utils/actions";
 
 const Home = () => {
+  // setup state store
+  const [state, dispatch] = useStoreContext();
+
+  // setup query
   const { data } = useQuery(GET_ME);
 
   const user = data?.me || {};
   const characterList = user.characters || [];
   const groupList = user.groups || [];
+
+  useEffect(() => {
+    if (data) {
+      dispatch({
+        type: SET_CURRENT_USER,
+        payload: user.realName,
+      });
+    }
+  }, [data]);
 
   return (
     <Container>
@@ -60,6 +77,12 @@ const Home = () => {
         </Row>
       ) : (
         <>
+          <NavLink to="/UserSearch">
+            <Button>Search for Users</Button>
+          </NavLink>
+          <NavLink to="/CharacterSearch">
+            <Button>Search for Characters</Button>
+          </NavLink>
           <header className="h2">Your Characters:</header>
           <Accordion>
             {characterList.length > 0
@@ -92,7 +115,7 @@ const Home = () => {
           <Accordion>
             {groupList.length > 0
               ? groupList.map((group, index) => (
-                  <GroupList character={group} index={index} key={index} />
+                  <GroupList group={group} index={index} key={index} />
                 ))
               : null}
             <Card key="addGroup">

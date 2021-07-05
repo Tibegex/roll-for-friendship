@@ -6,6 +6,8 @@ const { Provider } = StoreContext;
 
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useUserReducer({
+    currentUserName: "",
+
     playerLevels: [
       { name: "Beginner", description: "New player, I don't know the rules" },
       { name: "Low Level", description: "I know the basics of the rules" },
@@ -108,6 +110,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       "Goblin",
       "Goliath",
       "Hobgoblin",
+      "Human",
       "Kalashtar",
       "Kenku",
       "Khenra",
@@ -150,8 +153,6 @@ const StoreProvider = ({ value = [], ...props }) => {
       "Spotter",
       "Trapper",
     ],
-
-    currentUser: {},
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

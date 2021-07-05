@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// CSS
+import { Dropdown, DropdownButton } from "react-bootstrap";
 import "./navStyle.css";
+// State Store
+import { useStoreContext } from "../../utils/GlobalState";
+import Auth from "../../utils/auth";
 
 const Nav = () => {
+  const [state] = useStoreContext();
+
   return (
     <nav id="navbar" className="navbar">
       <div className="container-fluid">
@@ -17,6 +24,26 @@ const Nav = () => {
             ></img>
           </Link>
         </div>
+        {state.currentUserName ? (
+          <DropdownButton
+            id="user dropdown"
+            menuAlign="right"
+            title={`Welcome, ${state.currentUserName}`}
+          >
+            <Dropdown.Item as="button">Update your information</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item
+              as="button"
+              onClick={() => {
+                Auth.logout();
+              }}
+            >
+              Logout
+            </Dropdown.Item>
+          </DropdownButton>
+        ) : (
+          "Welcome!"
+        )}
       </div>
     </nav>
   );
