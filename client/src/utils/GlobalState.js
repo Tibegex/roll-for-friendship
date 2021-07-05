@@ -104,6 +104,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       "Bugbear",
       "Centaur",
       "Changeling",
+      "Dragonborn",
       "Firbolg",
       "Genasi",
       "Gith",

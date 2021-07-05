@@ -130,7 +130,7 @@ const AddCharacterForm = ({ index }) => {
       </Form.Group>
 
       <Form.Group controlId="role">
-        <Form.Label>Enter your Character's race:</Form.Label>
+        <Form.Label>Enter your Character's role:</Form.Label>
         <Form.Control
           as="select"
           placeholder="Role"
