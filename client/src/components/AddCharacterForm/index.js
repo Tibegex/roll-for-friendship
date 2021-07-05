@@ -21,6 +21,12 @@ const AddCharacterForm = ({ index }) => {
     roleOther: "",
   });
 
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 0);
+  }
+
   const [addCharacter] = useMutation(ADD_CHARACTER);
 
   const handleSubmit = async (event) => {
@@ -184,7 +190,7 @@ const AddCharacterForm = ({ index }) => {
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" onClick={refreshPage}>
         Submit
       </Button>
     </Form>
