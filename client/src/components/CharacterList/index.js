@@ -39,6 +39,12 @@ function CharacterList({ character, index }) {
             <span className="font-weight-bold">Race: </span>
             {character.race}
             <br />
+            <span className="font-weight-bold">Level: </span>
+            {character.level}
+            <br />
+            <span className="font-weight-bold">Role: </span>
+            {character.role}
+            <br />
             <span className="font-weight-bold">Backstory: </span>
             <br />
             {character.backstory}
