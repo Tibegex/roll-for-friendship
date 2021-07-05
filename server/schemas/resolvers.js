@@ -34,6 +34,10 @@ const resolvers = {
       return Character.find(args);
     },
 
+    user_characters: async (parent, args) => {
+      console.log("user_characters:", args);
+    },
+
     groups: async (parent, args) => {
       return Group.find(args);
     },

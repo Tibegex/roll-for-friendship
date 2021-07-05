@@ -154,3 +154,42 @@ export const GET_GROUPS = gql`
     }
   }
 `;
+
+export const SEARCH_CHARACTERS = gql`
+  query search_Characters(
+    $realName: String
+    $playerLevel: String
+    $city: String
+    $state: String
+    $characterName: String
+    $class: String
+    $race: String
+    $level: Int
+    $role: String
+  ) {
+    user_characters(
+      realName: $realName
+      playerLevel: $playerLevel
+      city: $city
+      state: $state
+      characterName: $characterName
+      class: $class
+      race: $race
+      level: $level
+      role: $role
+    ) {
+      playerLevel
+      city
+      state
+      characters {
+        characterName
+        class
+        race
+        backstory
+        level
+        role
+        notes
+      }
+    }
+  }
+`;
