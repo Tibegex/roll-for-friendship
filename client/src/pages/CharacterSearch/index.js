@@ -42,6 +42,7 @@ const CharacterSearch = () => {
     variables: { ...formState },
   });
   const [inviteUser] = useMutation(INVITE_USER);
+
   console.log("data:");
   console.log(data);
 
@@ -244,18 +245,59 @@ const CharacterSearch = () => {
           {users.length === 0 ? (
             <p className="formFont">No characters found matching criteria.</p>
           ) : (
-            <>
-              <p className="formFont">There is data!</p>
-              <Accordion>
-                {users.map((user, index) => (
-                  <Card key={index}>
-                    {console.log("Accordion: user:", user)}
-                    <Card.Header>
-                      <Accordion.Toggle
-                        as={Button}
-                        variant="link"
-                        eventKey={`"${index}"`}
+            <Accordion>
+              {users.map((user, index) => (
+                <Card key={index}>
+                  {console.log("Accordion: user:", user)}
+                  <Card.Header>
+                    <Accordion.Toggle
+                      as={Button}
+                      variant="link"
+                      eventKey={`"${index}"`}
+                    >
+                      <Row className="justify-content-between">
+                        {user.characters.characterName}
+                      </Row>
+                    </Accordion.Toggle>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey={`"${index}"`}>
+                    <Card.Body>
+                      <span className="font-weight-bold">Character name: </span>
+                      {user.characters.characterName} <br />
+                      <span className="font-weight-bold">Class: </span>
+                      {user.characters.class}
+                      <br />
+                      <span className="font-weight-bold">Race: </span>
+                      {user.characters.race}
+                      <br />
+                      <span className="font-weight-bold">Level: </span>
+                      {user.characters.level}
+                      <br />
+                      <span className="font-weight-bold">Role: </span>
+                      {user.characters.role}
+                      <br />
+                      <span className="font-weight-bold">Backstory: </span>
+                      <br />
+                      {user.characters.backstory}
+                      <br />
+                      <span className="font-weight-bold">Notes: </span>
+                      <br />
+                      {user.characters.notes}
+                      <br />
+                      <Button
+                        onClick={() =>
+                          invitePlayer(user._id, user.characters.characterName)
+                        }
                       >
+<<<<<<< HEAD
+                        Invite Character to Game
+                      </Button>
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              ))}
+            </Accordion>
+=======
                         <Row className="d-flex justify-content-between">
                           {user.characters.characterName}
                         </Row>
@@ -280,6 +322,7 @@ const CharacterSearch = () => {
                 ))}
               </Accordion>
             </>
+>>>>>>> main
           )}
         </>
       )}
