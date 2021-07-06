@@ -2,7 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Group, Character } = require("../models");
 
 const { signToken } = require("../utils/auth");
-const { sendWelcome } = require("../utils/sendEmail");
+const { sendWelcome, sendInviteToCharacter } = require("../utils/sendEmail");
 
 const resolvers = {
   Query: {
@@ -77,6 +77,7 @@ const resolvers = {
           }
         });
 
+        console.log(returnData);
         return returnData;
       } catch (err) {
         console.log(err);
@@ -193,6 +194,27 @@ const resolvers = {
             { _id: context.user._id },
             { $pull: { groups: group._id } }
           );
+
+          return { status: true, error: "Success" };
+        } catch (error) {
+          return { status: false, error };
+        }
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    inviteUser: async (parent, { userId, characterName }, context) => {
+      if (context.user) {
+        try {
+          const toUser = await User.findById(userId);
+
+          console.log("context.user:", context.user);
+          const currentUser = await User.findById(context.user._id);
+
+          console.log("toUser:", toUser.email);
+          console.log("currentUser:", currentUser.email);
+
+          await sendInviteToCharacter(toUser, currentUser, characterName);
 
           return { status: true, error: "Success" };
         } catch (error) {
