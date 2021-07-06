@@ -81,8 +81,6 @@ const CharacterSearch = () => {
               />
             </Col>
           </Form.Group>
-          <br />
-
           <Form.Group as={Row} controlId="classOption">
             <Form.Label column="lg" lg={2}>
               Class
@@ -97,8 +95,6 @@ const CharacterSearch = () => {
               </Form.Control>
             </Col>
           </Form.Group>
-          <br />
-
           <Form.Group as={Row} controlId="race">
             <Form.Label column="lg" lg={2}>
               Race
@@ -113,8 +109,6 @@ const CharacterSearch = () => {
               </Form.Control>
             </Col>
           </Form.Group>
-          <br />
-
           <Form.Group as={Row} controlId="level">
             <Form.Label column="lg" lg={2}>
               Level
@@ -129,8 +123,6 @@ const CharacterSearch = () => {
               />
             </Col>
           </Form.Group>
-          <br />
-
           <Form.Group as={Row} controlId="role">
             <Form.Label column="lg" lg={2}>
               Role
@@ -150,8 +142,6 @@ const CharacterSearch = () => {
               </Form.Control>
             </Col>
           </Form.Group>
-          <br />
-
           <Form.Group as={Row} controlId="playerLevel">
             <Form.Label column="lg" lg={2} className="formFont">
               Player's level:
@@ -171,8 +161,6 @@ const CharacterSearch = () => {
               </Form.Control>
             </Col>
           </Form.Group>
-          <br />
-
           <Form.Group as={Row} controlId="remoteOnlyCheckbox">
             <Form.Check
               className="formFont"
@@ -260,7 +248,7 @@ const CharacterSearch = () => {
                         variant="link"
                         eventKey={`"${index}"`}
                       >
-                        <Row className="justify-content-between">
+                        <Row className="d-flex justify-content-between">
                           {user.characters.characterName}
                           <Button>Add Character</Button>
                         </Row>

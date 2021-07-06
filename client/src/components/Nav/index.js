@@ -16,10 +16,10 @@ const Nav = () => {
         <div className="navbar-brand">
           <Link to="/">
             <img
-              src={process.env.PUBLIC_URL + "RFFLogo.png"}
+              src={process.env.PUBLIC_URL + "RFFLogoWords.png"}
               alt="RFF Logo"
               width="105px"
-              height="60px"
+              height="75px"
               className="d-inline-block align-text-center"
             ></img>
           </Link>
@@ -42,7 +42,7 @@ const Nav = () => {
             </Dropdown.Item>
           </DropdownButton>
         ) : (
-          "Welcome!"
+          "Roll For Friendship"
         )}
       </div>
     </nav>
