@@ -13,28 +13,26 @@ const UserSearch = () => {
 
           <Form.Row>
             <Form.Label column="lg" lg={2}>
-              realName
+              Real Name
             </Form.Label>
             <Col>
-              <Form.Control size="lg" type="text" placeholder="realName" />
+              <Form.Control size="lg" type="text" placeholder="Real Name" />
             </Col>
           </Form.Row>
-          <br />
           <Form.Row>
             <Form.Label column="lg" lg={2}>
-              email
+              Email
             </Form.Label>
             <Col>
-              <Form.Control size="lg" type="text" placeholder="email" />
+              <Form.Control size="lg" type="text" placeholder="Email" />
             </Col>
           </Form.Row>
-          <br />
           <Form.Row>
             <Form.Label column="lg" lg={2}>
-              playerLevel
+              Player Level
             </Form.Label>
             <Col>
-              <Form.Control size="lg" type="text" placeholder="playerLevel" />
+              <Form.Control size="lg" type="text" placeholder="Player Level" />
             </Col>
           </Form.Row>
           <Form.Row>
