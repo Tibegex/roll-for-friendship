@@ -42,6 +42,8 @@ const groupSchema = new Schema({
   }, // (Roll 20, fantasy Grounds, Foundry, Astral…)
   currentCampaignLevel: {
     type: Number,
+    min: 0,
+    default: 1,
   },
   minPlayerLevel: {
     type: String,

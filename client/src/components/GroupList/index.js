@@ -45,11 +45,17 @@ function GroupList({ group, index }) {
             <span className="font-weight-bold">Weekday: </span>
             {group.weekday}
             <br />
-            <span className="font-weight-bold">Meeting Frequency: </span>
-            {group.frequencyTimes} {group.frequencyPeriod}
+            <span className="font-weight-bold">Meeting Frequency Amount: </span>
+            {group.frequencyTimes}
             <br />
-            <span className="font-weight-bold">Game Location: </span>
-            {group.gameLocationCity} {group.gameLocationState}
+            <span className="font-weight-bold">Meeting Frequency Period: </span>
+            {group.frequencyPeriod}
+            <br />
+            <span className="font-weight-bold">Game Location City: </span>
+            {group.gameLocationCity}
+            <br />
+            <span className="font-weight-bold">Game Location State: </span>
+            {group.gameLocationState}
             <br />
             <span className="font-weight-bold">vTT: </span>
             {group.vTTUsed}
@@ -69,10 +75,10 @@ function GroupList({ group, index }) {
             <span className="font-weight-bold">Profanity Level: </span>
             {group.profanityLevel}
             <br />
-            <span className="font-weight-bold">Looking For: </span>
+            {/* <span className="font-weight-bold">Looking For: </span>
             <br />
             {group.lookingFor}
-            <br />
+            <br /> */}
             <button
               className="btn btn-sm btn-danger ml-auto"
               onClick={() => handleDeleteGroup(group._id)}

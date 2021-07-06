@@ -43,9 +43,15 @@ const AddGroupForm = ({ index }) => {
   // set up the controls to handle the state of the fields in the form (controlled form)
   const handleChange = (event) => {
     const { name, value } = event.target;
+
+    let newValue =
+      name === "frequencyTimes" || name === "currentCampaignLevel"
+        ? parseInt(value)
+        : value;
+
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: newValue,
     });
   };
 
@@ -99,12 +105,21 @@ const AddGroupForm = ({ index }) => {
         />
       </Form.Group>
       <Form.Group controlId="frequencyTimes">
-        <Form.Label>Enter meeting frequency:</Form.Label>
+        <Form.Label>Enter meeting frequency amount:</Form.Label>
         <Form.Control
           type="number"
           min="0"
           placeholder="Meeting Frequency"
           name="frequencyTimes"
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="frequencyPeriod">
+        <Form.Label>Enter frequency period:</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Frequency period"
+          name="frequencyPeriod"
           onChange={handleChange}
         />
       </Form.Group>
@@ -178,7 +193,7 @@ const AddGroupForm = ({ index }) => {
           onChange={handleChange}
         />
       </Form.Group>
-      <Form.Group controlId="lookingFor">
+      {/* <Form.Group controlId="lookingFor">
         <Form.Label>Enter what you are looking for:</Form.Label>
         <Form.Control
           type="text"
@@ -186,7 +201,7 @@ const AddGroupForm = ({ index }) => {
           name="lookingFor"
           onChange={handleChange}
         />
-      </Form.Group>
+      </Form.Group> */}
       <Form.Group controlId="notes">
         <Form.Label>Enter any additional notes:</Form.Label>
         <Form.Control
