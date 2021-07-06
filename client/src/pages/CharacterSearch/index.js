@@ -289,7 +289,6 @@ const CharacterSearch = () => {
                           invitePlayer(user._id, user.characters.characterName)
                         }
                       >
-<<<<<<< HEAD
                         Invite Character to Game
                       </Button>
                     </Card.Body>
@@ -297,32 +296,6 @@ const CharacterSearch = () => {
                 </Card>
               ))}
             </Accordion>
-=======
-                        <Row className="d-flex justify-content-between">
-                          {user.characters.characterName}
-                        </Row>
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey={`"${index}"`}>
-                      <Card.Body>
-                        Character details
-                        <Button
-                          onClick={() =>
-                            invitePlayer(
-                              user._id,
-                              user.characters.characterName
-                            )
-                          }
-                        >
-                          Invite Character to Game
-                        </Button>
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                ))}
-              </Accordion>
-            </>
->>>>>>> main
           )}
         </>
       )}
