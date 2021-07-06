@@ -77,9 +77,9 @@ const Home = () => {
         </Row>
       ) : (
         <>
-          <NavLink to="/UserSearch">
+          {/* <NavLink to="/UserSearch">
             <Button>Search for Users</Button>
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/CharacterSearch">
             <Button>Search for Characters</Button>
           </NavLink>
