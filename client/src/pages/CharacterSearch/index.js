@@ -42,6 +42,7 @@ const CharacterSearch = () => {
     variables: { ...formState },
   });
   const [inviteUser] = useMutation(INVITE_USER);
+
   console.log("data:");
   console.log(data);
 
@@ -275,7 +276,30 @@ const CharacterSearch = () => {
                     </Card.Header>
                     <Accordion.Collapse eventKey={`"${index}"`}>
                       <Card.Body>
-                        Character details
+                        <span className="font-weight-bold">
+                          Character name:{" "}
+                        </span>
+                        {user.characters.characterName} <br />
+                        <span className="font-weight-bold">Class: </span>
+                        {user.characters.class}
+                        <br />
+                        <span className="font-weight-bold">Race: </span>
+                        {user.characters.race}
+                        <br />
+                        <span className="font-weight-bold">Level: </span>
+                        {user.characters.level}
+                        <br />
+                        <span className="font-weight-bold">Role: </span>
+                        {user.characters.role}
+                        <br />
+                        <span className="font-weight-bold">Backstory: </span>
+                        <br />
+                        {user.characters.backstory}
+                        <br />
+                        <span className="font-weight-bold">Notes: </span>
+                        <br />
+                        {user.characters.notes}
+                        <br />
                         <Button
                           onClick={() =>
                             invitePlayer(
