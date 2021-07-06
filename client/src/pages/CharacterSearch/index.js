@@ -11,8 +11,9 @@ import {
   Card,
 } from "react-bootstrap";
 // Queries/Mutations
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { SEARCH_CHARACTERS } from "../../utils/queries";
+import { INVITE_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 // State Store
@@ -40,16 +41,22 @@ const CharacterSearch = () => {
   const { loading, data } = useQuery(SEARCH_CHARACTERS, {
     variables: { ...formState },
   });
-
+  const [inviteUser] = useMutation(INVITE_USER);
   console.log("data:");
   console.log(data);
 
   const users = data?.user_characters || [];
 
   // handle inviting player to game
-  const invitePlayer = (id) => {
+  const invitePlayer = (userId) => {
     // use mutation to send email
     console.log(`invitePlayer(${id})`);
+    try {
+      const { data } = await inviteUser({ variables: userId });
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   // set up the controls to handle the state of the fields in the form (controlled form)
@@ -244,10 +251,10 @@ const CharacterSearch = () => {
         <p className="formFont">loading</p>
       ) : (
         <>
-          {users.length === 0 ||
+          {users.length === 0 /*||
           users
             .map((user) => user.characters.length)
-            .reduce((a, b) => a + b) === 0 ? (
+            .reduce((a, b) => a + b) === 0 */ ? (
             <p className="formFont">No characters found matching criteria.</p>
           ) : (
             <>

@@ -51,7 +51,7 @@ const typeDefs = gql`
     user: User
   }
 
-  type DeletePayload {
+  type StatusPayload {
     status: Boolean
     error: String
   }
@@ -174,7 +174,7 @@ const typeDefs = gql`
       notes: String
     ): Character
 
-    deleteCharacter(characterId: ID!): DeletePayload
+    deleteCharacter(characterId: ID!): StatusPayload
 
     updateGroup(
       campaignName: String
@@ -196,7 +196,9 @@ const typeDefs = gql`
       lookingFor: [String]
     ): Group
 
-    deleteGroup(groupId: ID!): DeletePayload
+    deleteGroup(groupId: ID!): StatusPayload
+
+    inviteUser(userId: ID!): StatusPayload
   }
 `;
 

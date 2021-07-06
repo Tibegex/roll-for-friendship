@@ -234,3 +234,12 @@ export const DELETE_GROUP = gql`
     }
   }
 `;
+
+export const INVITE_USER = gql`
+  mutation inviteUser($userId: ID!) {
+    inviteUser(userId: $userId) {
+      status
+      error
+    }
+  }
+`;
