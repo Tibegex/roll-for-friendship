@@ -48,11 +48,13 @@ const CharacterSearch = () => {
   const users = data?.user_characters || [];
 
   // handle inviting player to game
-  const invitePlayer = (userId) => {
+  const invitePlayer = async (userId, characterName) => {
     // use mutation to send email
-    console.log(`invitePlayer(${id})`);
+    console.log("invitePlayer:", { userId, characterName });
     try {
-      const { data } = await inviteUser({ variables: userId });
+      const { data } = await inviteUser({
+        variables: { userId, characterName },
+      });
       console.log(data);
     } catch (err) {
       console.error(err);
@@ -251,10 +253,7 @@ const CharacterSearch = () => {
         <p className="formFont">loading</p>
       ) : (
         <>
-          {users.length === 0 /*||
-          users
-            .map((user) => user.characters.length)
-            .reduce((a, b) => a + b) === 0 */ ? (
+          {users.length === 0 ? (
             <p className="formFont">No characters found matching criteria.</p>
           ) : (
             <>
@@ -277,7 +276,14 @@ const CharacterSearch = () => {
                     <Accordion.Collapse eventKey={`"${index}"`}>
                       <Card.Body>
                         Character details
-                        <Button onClick={() => invitePlayer(user._id)}>
+                        <Button
+                          onClick={() =>
+                            invitePlayer(
+                              user._id,
+                              user.characters.characterName
+                            )
+                          }
+                        >
                           Invite Character to Game
                         </Button>
                       </Card.Body>

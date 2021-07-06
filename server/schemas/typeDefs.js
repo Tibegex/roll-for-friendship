@@ -198,7 +198,7 @@ const typeDefs = gql`
 
     deleteGroup(groupId: ID!): StatusPayload
 
-    inviteUser(userId: ID!): StatusPayload
+    inviteUser(userId: ID!, characterName: String!): StatusPayload
   }
 `;
 
